@@ -2,201 +2,224 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Intravest Co., Ltd. — stainless coil, exhaust tube and GBFS slag trade between Korea, Japan and overseas makers; principal investment.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Intravest — international material supply and investment, Seoul.">
 <title>Intravest</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200;62..125,300;62..125,500;62..125,700;62..125,800&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Sans+JP:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300;62..125,500;62..125,700;62..125,800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Shippori+Mincho:wght@400;500&display=swap">
 <style>
-/* Layout: monumental type (direction 7) with a few rounded tiles from the bento grid (direction 10), in the dark-luxury palette (direction 4): night navy, gold hairlines, light display weights. */
-:root{
-  --stone:#0E1A2B; --tile:#12213A; --ink:#E9EDF2; --dim:#8E9CB0; --line:#22344B; --night:#0A1422; --night-fg:#E9EDF2; --gold:#C9A86A; --hair:rgba(201,168,106,.38);
-  --disp:"Archivo","Arial Narrow",Arial,sans-serif;
-  --sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;
-  --jp:"IBM Plex Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  color-scheme:dark;
-}
+/* Ten directions, one content set. Each .tN owns its palette, type and grid; shared parts are styled per direction. */
+:root{--sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;--disp:"Archivo","Arial Narrow",Arial,sans-serif;--serif:"Newsreader","Shippori Mincho",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--mincho:"Shippori Mincho","Yu Mincho",serif;
+  --bg:#0E1A2B;--fg:#E9EDF2;--dim:#8E9CB0;--line:#22344B;--ac:#C9A86A;--card:#13223A;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--stone);color:var(--ink);font:300 16px/1.75 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-:root[lang="ja"] body{font-family:var(--jp);line-height:1.95}
-:root[lang="ja"] [data-l="en"],:root:not([lang="ja"]) [data-l="ja"]{display:none!important}
-a{color:inherit} :focus-visible{outline:1px solid var(--gold);outline-offset:3px}
-::selection{background:var(--gold);color:var(--stone)}
-.wrap{max-width:1360px;margin:0 auto;padding-inline:clamp(16px,4vw,56px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:300 16px/1.75 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root[lang="ja"] body{line-height:1.95}
+a{color:inherit} :focus-visible{outline:1px solid var(--ac);outline-offset:3px}
+#app{min-height:100vh;background:var(--bg);color:var(--fg)}
+.sw{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;gap:3px;padding:5px;background:rgba(14,14,14,.9);border-radius:999px;max-width:calc(100% - 24px);overflow-x:auto;backdrop-filter:blur(8px)}
+.sw button{font:500 12px var(--sans);color:#BBB;background:none;border:0;border-radius:999px;padding:8px 11px;cursor:pointer;white-space:nowrap}
+.sw button[aria-pressed="true"]{background:#F2F2F2;color:#111}
+.lg{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:60;display:flex;background:rgba(14,14,14,.82);border-radius:999px;padding:3px}
+.lg button{font:500 11.5px var(--sans);color:#BBB;background:none;border:0;border-radius:999px;padding:6px 10px;cursor:pointer}
+.lg button[aria-pressed="true"]{background:#F2F2F2;color:#111}
 
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--stone) 90%,transparent);backdrop-filter:blur(8px)}
-.bar{display:flex;align-items:center;gap:26px;padding-block:18px}
-.mk{font:700 13px/1 var(--disp);letter-spacing:.42em;text-decoration:none}
-nav{margin-left:auto;display:flex;gap:24px;font-size:13px}
-nav a{text-decoration:none;color:var(--dim)} nav a:hover{color:var(--ink)}
-.lang{display:flex;gap:2px}
-.lang button{background:none;border:0;color:var(--dim);font:500 12.5px var(--sans);padding:4px 7px;cursor:pointer;border-radius:999px}
-.lang button[aria-pressed="true"]{background:var(--gold);color:var(--stone)}
-@media (max-width:820px){nav{display:none}.lang{margin-left:auto}}
+/* shared skeleton */
+#app>*,.main>*{padding-inline:clamp(16px,6vw,80px)}
+.hd{display:flex;align-items:center;gap:26px;padding-block:22px;padding-right:130px!important}
+.mk{font:600 14px/1 var(--disp);letter-spacing:.42em;text-decoration:none}
+.hd nav{margin-left:auto;display:flex;gap:24px;font-size:13px}
+.hd nav a,.mn a{text-decoration:none;color:var(--dim)}
+@media (max-width:860px){.hd nav{display:none}}
+section{padding-block:clamp(56px,8vw,112px);border-top:1px solid var(--line)}
+.hero{border-top:0}
+.ms{font-size:11.5px;letter-spacing:.3em;color:var(--ac);margin:0 0 24px}
+h1{margin:0;text-wrap:balance} h2{margin:0 0 32px;text-wrap:balance} h3,h4{margin:0 0 8px}
+.ld{color:var(--dim);max-width:34em;margin:28px 0 0}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,72px)}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,4vw,48px)}
+.row2>*,.row3>*{min-width:0}
+@media (max-width:820px){.row2,.row3{grid-template-columns:1fr}}
+.pl .no{font:600 12px var(--disp);letter-spacing:.2em;color:var(--dim)}
+.pl p,.eg p{color:var(--dim);margin:0 0 12px}
+.pl ul{list-style:none;margin:0;padding:0} .pl li{padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.mt dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px} .mt dt{color:var(--dim)} .mt dd{margin:0;font-variant-numeric:tabular-nums}
+.ft b{display:block;font:700 clamp(28px,3vw,40px)/1.1 var(--disp);font-stretch:80%} .ft span{font-size:13px;color:var(--dim)}
+.mail{display:flex;gap:14px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--ac);padding-bottom:12px;max-width:560px}
+.mail code{font:400 18px var(--sans);user-select:all;word-break:break-all} .mail button{margin-left:auto;background:none;border:0;color:var(--ac);font:500 12px var(--sans);letter-spacing:.1em;cursor:pointer}
+.fo{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;padding-block:28px 110px;font-size:12px;color:var(--dim);border-top:1px solid var(--line)}
+.art{position:absolute;inset:0;width:100%;height:100%;color:var(--ac);pointer-events:none}
 
-/* monumental wordmark sized to the column so it never wraps */
-main{position:relative}
-#halo{position:absolute;z-index:0;right:-18%;top:-140px;width:min(980px,110vw);height:auto;color:var(--gold);opacity:.55;pointer-events:none}
-main>*{position:relative;z-index:1}
-.mono{display:block;width:100%;height:auto;margin:clamp(24px,4vw,56px) 0 clamp(28px,4vw,56px);fill:var(--ink)}
-.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;padding-bottom:clamp(40px,6vw,80px)}
-.ms{font-size:11.5px;letter-spacing:.3em;color:var(--gold);margin:0 0 18px}
-h1{font:300 clamp(24px,2.6vw,38px)/1.3 var(--sans);margin:0;text-wrap:balance}
-:root[lang="ja"] h1{font:500 clamp(22px,2.3vw,32px)/1.6 var(--jp)}
-.lead{color:var(--dim);margin:0;max-width:34em}
-@media (max-width:820px){.intro{grid-template-columns:1fr}}
-
-/* bento tiles (borrowed) */
-.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.tile{background:var(--tile);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,2.4vw,30px);min-width:0;position:relative;overflow:hidden}
-.tile.dark{background:var(--night);color:var(--night-fg);border-color:var(--hair)}
-.tile.span2{grid-column:span 2}
-.tile .k{font-size:11px;letter-spacing:.26em;color:var(--gold);margin:0 0 10px}
-.tile.dark .k{color:var(--gold)}
-.tile b{display:block;font:200 clamp(40px,5vw,72px)/.95 var(--disp);font-stretch:62%;letter-spacing:.01em}
-:root[lang="ja"] .tile b.t{font:300 clamp(26px,2.8vw,36px)/1.25 var(--jp)}
-.tile p{margin:10px 0 0;color:var(--dim);font-size:14px}
-.tile.dark p{color:#AEB9C8}
-.tile svg{position:absolute;right:-60px;top:-60px;width:260px;height:260px;color:var(--gold);opacity:.9}
-@media (max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.tiles{grid-template-columns:1fr}.tile.span2{grid-column:auto}}
-
-section{padding-block:clamp(72px,10vw,150px)}
-.label{font-size:11.5px;letter-spacing:.3em;color:var(--gold);margin:0 0 28px}
-.pillar{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,5vw,72px);align-items:end;padding-block:clamp(28px,4vw,48px);border-top:1px solid var(--hair)}
-.pillar h2{font:200 clamp(56px,9vw,150px)/.86 var(--disp);font-stretch:62%;letter-spacing:-.01em;margin:0}
-:root[lang="ja"] .pillar h2{font:300 clamp(40px,6vw,88px)/1.15 var(--jp)}
-.pillar p{margin:0 0 12px;font-size:clamp(16px,1.4vw,18px)}
-.pillar .keys{font:500 12px var(--sans);letter-spacing:.16em;color:var(--dim)}
-@media (max-width:820px){.pillar{grid-template-columns:1fr}}
-
-.edges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.edges .tile b{font-size:clamp(40px,5vw,80px);overflow-wrap:anywhere}
-:root[lang="ja"] .edges .tile b{font:300 clamp(34px,4vw,56px)/1.15 var(--jp)}
-@media (max-width:820px){.edges{grid-template-columns:1fr}}
-
-.mats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.mat h3{font:500 17px/1.4 var(--sans);margin:0 0 18px}
-.mat dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:14px;line-height:1.6}
-.mat dt{color:var(--dim);font-size:11px;letter-spacing:.2em;padding-top:3px}
-.mat dd{margin:0;font-variant-numeric:tabular-nums}
-@media (max-width:980px){.mats{grid-template-columns:1fr}}
-
-.invite h2{font:200 clamp(52px,10vw,170px)/.86 var(--disp);font-stretch:62%;letter-spacing:-.01em;margin:0}
-:root[lang="ja"] .invite h2{font:300 clamp(34px,5.6vw,76px)/1.3 var(--jp)}
-.invite .row{display:flex;flex-wrap:wrap;gap:20px 56px;align-items:end;justify-content:space-between;margin-top:36px}
-.invite p{margin:0;color:var(--dim)}
-.mail{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--tile);border:1px solid var(--hair);border-radius:999px;padding:10px 12px 10px 22px}
-.mail code{font:400 clamp(16px,1.5vw,19px) var(--sans);user-select:all;word-break:break-all}
-.mail button{background:var(--gold);color:var(--stone);border:0;border-radius:999px;font:500 12px var(--sans);padding:8px 16px;cursor:pointer}
-footer{border-top:1px solid var(--hair);padding-block:24px 48px;font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+/* 1 Corporate */
+.t1{--bg:#F5F6F8;--fg:#0F2440;--dim:#5A677A;--line:#D8DDE4;--ac:#0F2440;--card:#FFF;color-scheme:light}
+.t1 .hd{background:#0F2440;color:#fff} .t1 .hd nav a{color:#AFC0D6}
+.t1 .hero{background:#0F2440;color:#fff;padding-block:clamp(80px,10vw,140px)} .t1 .hero .ms{color:#AFC0D6} .t1 .hero .ld{color:#C9D4E3}
+.t1 h1{font:600 clamp(36px,4.6vw,64px)/1.1 var(--sans);max-width:20ch} .t1 h2{font:600 28px var(--sans)}
+.t1 .band{background:#fff} .t1 .pl,.t1 .mt,.t1 .eg{background:#fff;border:1px solid var(--line);padding:28px}
+.t1 h3{font:600 22px var(--sans)} .t1 h4{font:600 17px var(--sans)}
+/* 2 Editorial */
+.t2{--bg:#F7F4EE;--fg:#1B1A17;--dim:#6E6A62;--line:#DDD6C9;--ac:#1B1A17;color-scheme:light}
+.t2 h1{font:400 clamp(44px,6.4vw,96px)/1.02 var(--serif);max-width:18ch} .t2 h1 em{display:block;font-style:italic}
+.t2 .cols{columns:2 280px;column-gap:48px;margin-top:40px;max-width:900px} .t2 .cols p{margin:0 0 14px}
+.t2 .dropcap::first-letter{float:left;font:400 64px/.85 var(--serif);margin:6px 10px 0 0}
+.t2 .pull{margin:0;padding:clamp(56px,8vw,110px) clamp(16px,6vw,80px);font:italic 400 clamp(32px,4.6vw,64px)/1.15 var(--serif);border-block:1px solid var(--fg);text-align:center}
+.t2 h2,.t2 h3{font:400 clamp(28px,3vw,40px)/1.1 var(--serif)} .t2 h4{font:500 18px var(--sans)}
+.t2 .ms{color:var(--dim)}
+/* 3 Swiss */
+.t3{--bg:#FFFFFF;--fg:#0A0A0A;--dim:#777;--line:#0A0A0A;--ac:#1F4E8C;color-scheme:light}
+.t3 .grid{display:grid;grid-template-columns:120px minmax(0,1fr);column-gap:32px;align-items:start}
+.t3 .grid>*:not(.gn){grid-column:2} .t3 .gn{grid-column:1;grid-row:1/span 3;font:700 64px/1 var(--disp);font-stretch:70%;color:var(--ac)}
+.t3 h1{font:700 clamp(40px,5.6vw,84px)/.98 var(--sans);letter-spacing:-.02em} .t3 h2{font:700 32px var(--sans)} .t3 h3{font:700 26px var(--sans)} .t3 h4{font:700 17px var(--sans)}
+@media (max-width:700px){.t3 .grid{grid-template-columns:1fr}.t3 .grid>*,.t3 .gn{grid-column:1;grid-row:auto}}
+/* 4 Dark luxury */
+.t4{--bg:#0E1A2B;--fg:#E9EDF2;--dim:#8E9CB0;--line:#22344B;--ac:#C9A86A}
+.t4 .hero{position:relative;overflow:hidden;min-height:min(88svh,820px);display:flex;align-items:flex-end} .t4 .hero .in{position:relative}
+.t4 h1{font:300 clamp(40px,6vw,88px)/1.02 var(--disp);font-stretch:72%;max-width:15ch} .t4 .lb{font-size:11.5px;letter-spacing:.3em;color:var(--ac);margin:0 0 32px}
+.t4 h3{font:600 clamp(30px,3.4vw,46px)/1 var(--disp);font-stretch:76%} .t4 h4{font:600 22px var(--disp);font-stretch:80%} .t4 h2{font:300 clamp(36px,5vw,68px)/1 var(--disp);font-stretch:70%}
+/* 5 Split */
+.t5{--bg:#F2F0EB;--fg:#14202E;--dim:#6B7280;--line:#D9D4CA;--ac:#8A6A35;color-scheme:light}
+.t5>.split{padding:0!important;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.t5 .side{position:sticky;top:0;height:100vh;background:#14202E;color:#EDE9E1;padding:32px clamp(20px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--ac:#C9A86A}
+.t5 .side>*{position:relative} .t5 .side h1{font:300 clamp(36px,4vw,64px)/1.02 var(--disp);font-stretch:72%} .t5 .side .sub{color:#C9A86A;font-size:18px;margin:16px 0 0}
+.t5 .mn{display:flex;gap:22px;padding-block:28px;font-size:13px;padding-right:120px!important} .t5 section{padding-block:56px}
+.t5 .pl{padding-block:20px;border-top:1px solid var(--line)} .t5 h3{font:600 30px/1 var(--disp);font-stretch:78%} .t5 h4{font:600 20px var(--disp);font-stretch:85%} .t5 .mt{padding-block:18px;border-top:1px solid var(--line)}
+@media (max-width:860px){.t5>.split{grid-template-columns:1fr}.t5 .side{position:relative;height:auto;min-height:70vh;gap:32px}}
+/* 6 Panels */
+.t6{--bg:#101820;--fg:#EEF0F2;--dim:#93A0AD;--line:#26323E;--ac:#D7B46A}
+.t6 .snap{padding:0!important}
+.t6 .pn{min-height:100svh;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start;padding-inline:clamp(16px,8vw,120px)}
+:root[data-t="6"]{scroll-snap-type:y proximity}
+.t6 .hd{position:absolute;left:0;right:0;padding-inline:clamp(16px,8vw,120px)}
+.t6 h1{font:300 clamp(44px,7vw,110px)/1 var(--disp);font-stretch:68%;max-width:14ch} .t6 .big{font:300 clamp(28px,3.6vw,52px)/1.25 var(--sans);max-width:24ch;margin:0}
+.t6 .pn .no{font:600 14px var(--disp);letter-spacing:.3em;color:var(--ac)} .t6 .pn h2{font:800 clamp(64px,12vw,180px)/.9 var(--disp);font-stretch:62%;margin:12px 0 24px} .t6 .pn p{max-width:36em;color:var(--dim);font-size:18px}
+.t6 h4{font:700 26px var(--disp);font-stretch:80%}
+/* 7 Monumental */
+.t7{--bg:#ECEAE6;--fg:#111;--dim:#6F6C66;--line:#CFCBC3;--ac:#111;color-scheme:light}
+.t7 .mono{font:800 clamp(56px,14.5vw,260px)/.8 var(--disp);font-stretch:62%;letter-spacing:-.02em;margin:0 0 40px;white-space:nowrap}
+.t7 h1{font:500 clamp(22px,2.4vw,34px)/1.3 var(--sans)} .t7 .under .ld{margin:0}
+.t7 h3{font:800 clamp(40px,6vw,88px)/.9 var(--disp);font-stretch:62%} .t7 .edges h4{font:800 clamp(36px,5vw,72px)/.9 var(--disp);font-stretch:62%} .t7 h4{font:700 20px var(--disp)} .t7 h2{font:800 clamp(40px,7vw,110px)/.9 var(--disp);font-stretch:62%}
+/* 8 Certificate */
+.t8{--bg:#E9E7E1;--fg:#1A1A1A;--dim:#5F5D58;--line:#1A1A1A;--ac:#8B2E2E;color-scheme:light}
+.t8 .doc{max-width:1080px;margin:24px auto 0;background:#FBFAF7;border:1px solid #1A1A1A;padding:0!important;font-family:var(--mono)}
+.t8 .doc>*{padding-inline:clamp(16px,4vw,48px)} .t8 .docno{margin-left:auto;font:500 12px var(--mono);color:var(--ac)}
+.t8 .hd nav{margin-left:24px} .t8 h1{font:500 clamp(28px,3.4vw,46px)/1.2 var(--mono)} .t8 h2{font:500 26px var(--mono)} .t8 .ms{font-family:var(--mono);color:var(--ac)}
+.t8 table{border-collapse:collapse;width:100%;font-size:13.5px;font-weight:400;color:var(--fg)} .t8 .doc{font-weight:400} .t8 th,.t8 td{border:1px solid #1A1A1A;padding:10px 12px;text-align:left;vertical-align:top} .t8 th{background:#EFEDE7;font-weight:500}
+.t8 .kv th{width:26%} .t8 .tw{overflow-x:auto} .t8 .tb{min-width:720px}
+.t8 .stamp{display:inline-block;transform:rotate(-8deg);border:3px double var(--ac);color:var(--ac);font:500 14px/1.3 var(--mono);letter-spacing:.2em;padding:10px 16px;margin-bottom:28px;text-align:center}
+/* 9 Washi */
+.t9{--bg:#F4F1EA;--fg:#2A2723;--dim:#8D877D;--line:#DDD6C9;--ac:#5C6B5E;color-scheme:light}
+.t9 .hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,5vw,72px);padding-block:clamp(80px,12vw,180px)}
+.t9 .tate{writing-mode:vertical-rl;font:400 clamp(20px,2.2vw,28px)/2 var(--mincho);letter-spacing:.4em;color:var(--ac);border-left:1px solid var(--line);padding-left:18px}
+.t9 h1{font:400 clamp(36px,4.8vw,68px)/1.35 var(--mincho);letter-spacing:.04em} .t9 h2,.t9 h3{font:400 clamp(26px,2.8vw,36px)/1.4 var(--mincho)} .t9 h4{font:500 18px var(--mincho)}
+@media (max-width:700px){.t9 .hero{grid-template-columns:1fr}.t9 .tate{display:none}}
+/* 10 Bento */
+.t10{--bg:#0D1117;--fg:#E8ECF1;--dim:#8B95A3;--line:#222A35;--ac:#C9A86A;--card:#151B24}
+.t10 .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-block:12px 40px}
+.t10 .tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0;position:relative;overflow:hidden}
+.t10 .hero2{grid-column:span 3;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end} .t10 .hero2>*{position:relative}
+.t10 .wide{grid-column:span 2} .t10 h1{font:300 clamp(34px,4.4vw,64px)/1.02 var(--disp);font-stretch:72%} .t10 h2{font:300 clamp(30px,3.6vw,48px)/1.05 var(--disp);font-stretch:72%}
+.t10 h3{font:600 28px var(--disp);font-stretch:80%} .t10 h4{font:600 20px var(--disp);font-stretch:85%} .t10 .g{font:600 15px var(--disp);color:var(--ac);margin:0 0 6px} .t10 .u{color:var(--dim);font-size:13px;margin:8px 0 0} .t10 .mt p{margin:0}
+.t10 .ld{margin:0} .t10 .fo{border:0}
+@media (max-width:900px){.t10 .bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t10 .hero2{grid-column:span 2}}
+@media (max-width:560px){.t10 .bento{grid-template-columns:1fr}.t10 .hero2,.t10 .wide{grid-column:auto}}
+.sw{display:none!important}
 </style>
 </head>
 <body>
 
-
-<header><div class="wrap bar">
-  <a class="mk" href="#top">INTRAVEST</a>
-  <nav aria-label="Sections">
-    <a href="#pillars"><span data-l="en">Investment</span><span data-l="ja">投資</span></a>
-    <a href="#pillars"><span data-l="en">Material Supply</span><span data-l="ja">マテリアルサプライ</span></a>
-    <a href="#materials"><span data-l="en">Materials</span><span data-l="ja">取扱品目</span></a>
-    <a href="#contact"><span data-l="en">Contact</span><span data-l="ja">お問い合わせ</span></a>
-  </nav>
-  <div class="lang" role="group" aria-label="Language">
-    <button type="button" id="lang-en" data-set="en" aria-pressed="true">EN</button>
-    <button type="button" id="lang-ja" data-set="ja" aria-pressed="false">日本語</button>
-  </div>
-</div></header>
-
-<main id="top" class="wrap">
-  <svg id="halo" viewBox="0 0 260 260" aria-hidden="true"></svg>
-  <svg class="mono" viewBox="0 0 1000 150" role="img" aria-label="INTRAVEST"><text x="0" y="132" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font:200 170px var(--disp);font-stretch:62%">INTRAVEST</text></svg>
-
-  <div class="intro">
-    <div>
-      <p class="ms">INTERNATIONAL MATERIAL SUPPLY · INVESTMENT</p>
-      <h1><span data-l="en">From the mills of Korea and Japan. On quality, on time, on our capital.</span><span data-l="ja">韓国・日本の製鉄所から。品質で、納期で、そして自己資本で。</span></h1>
-    </div>
-    <p class="lead"><span data-l="en">Every ton we supply comes mill-direct from Korean and Japanese steelworks, backed by our own balance sheet.</span><span data-l="ja">当社が供給する鋼材は、すべて韓国・日本の製鉄所から直接お届けし、自己資本で支えています。</span></p>
-  </div>
-
-  <div class="tiles">
-    <div class="tile"><p class="k"><span data-l="en">FOUNDED</span><span data-l="ja">設立</span></p><b>2016</b><p><span data-l="en">Seoul, Korea</span><span data-l="ja">韓国・ソウル</span></p></div>
-    <div class="tile"><p class="k"><span data-l="en">HEADQUARTERS</span><span data-l="ja">本社</span></p><b class="t"><span data-l="en">Seoul CBD</span><span data-l="ja">ソウル都心</span></b><p><span data-l="en">Gwanghwamun · Kyobo Life Building 15F</span><span data-l="ja">光化門・教保生命ビル15階</span></p></div>
-    <div class="tile dark span2"><svg id="rings" viewBox="0 0 260 260" aria-hidden="true"></svg><p class="k"><span data-l="en">TWO PILLARS</span><span data-l="ja">二つの柱</span></p><b class="t"><span data-l="en">Investment<br>Material Supply</span><span data-l="ja">投資<br>マテリアルサプライ</span></b></div>
-  </div>
-
-  <section id="pillars">
-    <p class="label"><span data-l="en">TWO PILLARS · SINCE 2016</span><span data-l="ja">二つの柱・2016年より</span></p>
-    <div class="pillar">
-      <h2><span data-l="en">Investment</span><span data-l="ja">投資</span></h2>
-      <div><p><span data-l="en">Our investment division gives Intravest a financial stability few traders can match. It is why mills extend us allocation and customers trust us with their lines.</span><span data-l="ja">投資部門がもたらす財務の安定は、他の商社にはない強みです。製鉄所が供給枠を任せ、お客様が生産ラインを託してくださる理由です。</span></p>
-        <div class="keys"><span data-l="en">MILL PREPAYMENT · INVENTORY ON OUR ACCOUNT · PAYMENT TERMS</span><span data-l="ja">製鉄所への前払い・当社勘定での在庫・決済条件</span></div></div>
-    </div>
-    <div class="pillar">
-      <h2><span data-l="en">Material Supply</span><span data-l="ja">マテリアルサプライ</span></h2>
-      <div><p><span data-l="en">Years of trust with the integrated mills of Korea and Japan, total commitment to every customer's production, and deep expertise in ferritic stainless and slag.</span><span data-l="ja">韓国・日本の一貫製鉄所との長年の信頼、お客様の生産への献身、フェライト系ステンレスとスラグへの深い専門性。</span></p>
-        <div class="keys"><span data-l="en">TRUST · COMMITMENT · EXPERTISE</span><span data-l="ja">信頼・献身・専門性</span></div></div>
-    </div>
-  </section>
-
-  <div class="edges">
-    <div class="tile"><p class="k">01</p><b><span data-l="en">Quality</span><span data-l="ja">品質</span></b><p><span data-l="en">Mill-certified, traceable to the heat.</span><span data-l="ja">ミル証明付き、溶鋼番号まで追跡可能。</span></p></div>
-    <div class="tile"><p class="k">02</p><b><span data-l="en">Delivery</span><span data-l="ja">納期</span></b><p><span data-l="en">Production slots secured at the mill.</span><span data-l="ja">製鉄所で生産枠を確保。</span></p></div>
-    <div class="tile dark"><p class="k">03</p><b><span data-l="en">Financing</span><span data-l="ja">ファイナンス</span></b><p><span data-l="en">Our own capital behind every order.</span><span data-l="ja">すべての注文を自己資本で。</span></p></div>
-  </div>
-
-  <section id="materials">
-    <p class="label"><span data-l="en">MATERIALS</span><span data-l="ja">取扱品目</span></p>
-    <div class="mats">
-      <div class="tile mat"><h3><span data-l="en">Stainless Steel Coil</span><span data-l="ja">ステンレスコイル</span></h3>
-        <dl><dt><span data-l="en">GRADES</span><span data-l="ja">鋼種</span></dt><dd>409L, 429, 439, 441, AL409, AL439</dd>
-        <dt><span data-l="en">SIZE</span><span data-l="ja">サイズ</span></dt><dd>CR · HR, W 1,000 – 1,500 mm</dd>
-        <dt><span data-l="en">USE</span><span data-l="ja">用途</span></dt><dd><span data-l="en">Automotive exhaust, tube mills</span><span data-l="ja">自動車排気系、造管</span></dd></dl></div>
-      <div class="tile mat"><h3><span data-l="en">Stainless Steel Pipe</span><span data-l="ja">ステンレス鋼管</span></h3>
-        <dl><dt><span data-l="en">GRADES</span><span data-l="ja">鋼種</span></dt><dd>409, 409L, 439, 441, AL409, AL439</dd>
-        <dt><span data-l="en">SIZE</span><span data-l="ja">サイズ</span></dt><dd>OD 12.7 – 101.6 mm<br>t 0.6 – 3.0 mm, L 3 – 8 m</dd>
-        <dt><span data-l="en">USE</span><span data-l="ja">用途</span></dt><dd><span data-l="en">Exhaust systems, automotive OEM</span><span data-l="ja">排気システム、自動車OEM</span></dd></dl></div>
-      <div class="tile mat"><h3><span data-l="en">GBFS Slag</span><span data-l="ja">高炉水砕スラグ</span></h3>
-        <dl><dt><span data-l="en">GRADE</span><span data-l="ja">品種</span></dt><dd><span data-l="en">Granulated blast-furnace slag</span><span data-l="ja">高炉水砕スラグ</span></dd>
-        <dt><span data-l="en">LOT</span><span data-l="ja">ロット</span></dt><dd><span data-l="en">25,000 – 50,000 MT, bulk vessel</span><span data-l="ja">25,000 – 50,000 MT、バラ積み</span></dd>
-        <dt><span data-l="en">USE</span><span data-l="ja">用途</span></dt><dd><span data-l="en">Cement, slag cement, ready-mix</span><span data-l="ja">セメント、高炉セメント、生コン</span></dd></dl></div>
-    </div>
-  </section>
-
-  <section id="contact" class="invite" style="padding-top:0">
-    <h2><span data-l="en">By introduction, or by writing.</span><span data-l="ja">ご紹介、またはご連絡にて。</span></h2>
-    <div class="row">
-      <p><span data-l="en">Kyobo Life Building 15F, Gwanghwamun, Seoul CBD.</span><span data-l="ja">ソウル都心・光化門、教保生命ビル15階。</span></p>
-      <div class="mail"><code id="addr">garam@intravest.co.kr</code><button type="button" id="copy"><span data-l="en">Copy</span><span data-l="ja">コピー</span></button></div>
-    </div>
-  </section>
-
-  <footer>
-    <span>Intravest Co., Ltd. · 株式会社イントラベスト · 주식회사 인트라베스트</span>
-    <span><span data-l="en">1 Jong-ro, Jongno-gu, Seoul 03154, Korea · Business reg. 723-86-00752</span><span data-l="ja">〒03154 ソウル特別市鍾路区鍾路1・事業者登録番号 723-86-00752</span></span>
-    <span><span data-l="en">Investments are made with the company's own capital only.</span><span data-l="ja">投資は自己資本のみで行っています。</span></span>
-  </footer>
-</main>
-
+<div class="lg" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="ja" aria-pressed="false">日本語</button></div>
+<div id="app"></div>
+<div class="sw" id="sw" role="group" aria-label="Direction" hidden></div>
 <script>
+// Intravest — ten layout concepts over one content set (EN/JA). Templates return HTML strings.
 (function(){
-  var NS='http://www.w3.org/2000/svg';
-  function rings(svg,r,k,w){while(r<128){k=(k*16807)%2147483647;var c=document.createElementNS(NS,'circle');c.setAttribute('cx',130);c.setAttribute('cy',130);c.setAttribute('r',r.toFixed(1));c.setAttribute('fill','none');c.setAttribute('stroke','currentColor');c.setAttribute('stroke-opacity',(.15+(k%100)/220).toFixed(2));c.setAttribute('stroke-width',((.5+(k%10)/12)*w).toFixed(2));svg.appendChild(c);r+=2.5+(k%5)}}
-  rings(document.getElementById('rings'),18,7,1);
-  rings(document.getElementById('halo'),30,11,.35);
-  var root=document.documentElement;
-  function setLang(l){root.lang=l;['en','ja'].forEach(function(x){document.getElementById('lang-'+x).setAttribute('aria-pressed',String(x===l))});try{localStorage.setItem('iv-lang',l)}catch(e){}}
-  var saved=null;try{saved=localStorage.getItem('iv-lang')}catch(e){}
-  setLang(location.hash==='#ja'||saved==='ja'?'ja':'en');
-  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set)})});
-  var btn=document.getElementById('copy');
-  btn.addEventListener('click',function(){var a=document.getElementById('addr');
-    function sel(){var rg=document.createRange();rg.selectNodeContents(a);var s=getSelection();s.removeAllRanges();s.addRange(rg)}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(a.textContent).then(function(){btn.children[0].textContent='Copied';btn.children[1].textContent='コピー済み'},sel)}else sel()});
+var C={
+  mission:'INTERNATIONAL MATERIAL SUPPLY · INVESTMENT',
+  h1:{en:'From the mills of Korea and Japan. On quality, on time, on our capital.',ja:'韓国・日本の製鉄所から。品質で、納期で、そして自己資本で。'},
+  h1a:{en:'From the mills of Korea and Japan.',ja:'韓国・日本の製鉄所から。'},
+  h1b:{en:'On quality, on time, on our capital.',ja:'品質で、納期で、そして自己資本で。'},
+  lead:{en:'Every ton we supply comes mill-direct from Korean and Japanese steelworks, backed by our own balance sheet.',ja:'当社が供給する鋼材は、すべて韓国・日本の製鉄所から直接お届けし、自己資本で支えています。'},
+  since:{en:'Two pillars since 2016',ja:'2016年より、二つの柱'},
+  pillars:[
+    {t:{en:'Investment',ja:'投資'},d:{en:'Our investment division gives Intravest a financial stability few traders can match. It is why mills extend us allocation and customers trust us with their lines.',ja:'投資部門がもたらす財務の安定は、他の商社にはない強みです。製鉄所が供給枠を任せ、お客様が生産ラインを託してくださる理由です。'},k:{en:['Mill prepayment','Inventory on our account','Payment terms'],ja:['製鉄所への前払い','当社勘定での在庫','決済条件']}},
+    {t:{en:'Material Supply',ja:'マテリアルサプライ'},d:{en:"Years of trust with the integrated mills of Korea and Japan, total commitment to every customer's production, and deep expertise in ferritic stainless and slag.",ja:'韓国・日本の一貫製鉄所との長年の信頼、お客様の生産への献身、フェライト系ステンレスとスラグへの深い専門性。'},k:{en:['Trust with the mills','Commitment to customers','Expertise'],ja:['製鉄所との信頼','お客様への献身','専門性']}}
+  ],
+  edge:[
+    {t:{en:'Quality',ja:'品質'},d:{en:'Mill-certified, traceable to the heat.',ja:'ミル証明付き、溶鋼番号まで追跡可能。'}},
+    {t:{en:'Delivery',ja:'納期'},d:{en:'Production slots secured at the mill.',ja:'製鉄所で生産枠を確保。'}},
+    {t:{en:'Financing',ja:'ファイナンス'},d:{en:'Our own capital behind every order.',ja:'すべての注文を自己資本で。'}}
+  ],
+  mats:[
+    {n:{en:'Stainless Steel Coil',ja:'ステンレスコイル'},g:['409L','429','439','441','AL409','AL439'],s:['CR · HR','W 1,000 – 1,500 mm'],u:{en:'Automotive exhaust · Tube mills',ja:'自動車排気系・造管'}},
+    {n:{en:'Stainless Steel Pipe',ja:'ステンレス鋼管'},g:['409','409L','439','441','AL409','AL439'],s:['OD 12.7 – 101.6 mm','t 0.6 – 3.0 mm · L 3 – 8 m'],u:{en:'Exhaust systems · Automotive OEM',ja:'排気システム・自動車OEM'}},
+    {n:{en:'GBFS Slag',ja:'高炉水砕スラグ'},g:['GBFS'],s:['25,000 – 50,000 MT',{en:'Bulk vessel',ja:'バラ積み'}],u:{en:'Cement · Slag cement · Ready-mix',ja:'セメント・高炉セメント・生コン'}}
+  ],
+  facts:[
+    {b:'2016',s:{en:'Founded in Seoul',ja:'ソウルにて設立'}},
+    {b:{en:'Seoul CBD',ja:'ソウル都心'},s:{en:'Gwanghwamun · Kyobo Life Building 15F',ja:'光化門・教保生命ビル15階'}},
+    {b:{en:'Korea · Japan',ja:'韓国・日本'},s:{en:'Mill-direct supply',ja:'製鉄所直送'}}
+  ],
+  contact:{en:'By introduction, or by writing.',ja:'ご紹介、またはご連絡にて。'},
+  addr:'garam@intravest.co.kr',
+  office:{en:'Kyobo Life Building 15F, 1 Jong-ro, Jongno-gu, Seoul 03154',ja:'〒03154 ソウル特別市鍾路区鍾路1 教保生命ビル15階'},
+  legal:{en:'Intravest Co., Ltd. · Investments are made with own capital only.',ja:'株式会社イントラベスト・投資は自己資本のみで行っています。'},
+  nav:{en:['Investment','Material Supply','Materials','Contact'],ja:['投資','マテリアルサプライ','取扱品目','お問い合わせ']},
+  L:{grades:{en:'Grades',ja:'鋼種'},size:{en:'Size',ja:'サイズ'},use:{en:'Industry',ja:'用途'},copy:{en:'Copy',ja:'コピー'},mats:{en:'Materials',ja:'取扱品目'},why:{en:'Why Intravest',ja:'選ばれる理由'},pillars:{en:'Two pillars',ja:'二つの柱'}}
+};
+var lang='en';
+function t(x){return x==null?'':(typeof x==='string'?x:(x[lang]!=null?x[lang]:x.en))}
+function list(a,f){return a.map(f).join('')}
+function sz(m){return m.s.map(t).join('<br>')}
+function navs(){return list(C.nav[lang],function(n,i){return '<a href="#s'+i+'">'+n+'</a>'})}
+function mail(){return '<div class="mail"><code>'+C.addr+'</code><button type="button" class="cp">'+t(C.L.copy)+'</button></div>'}
+function pillarsBlock(cls){return list(C.pillars,function(p,i){return '<div class="'+(cls||'pl')+'"><span class="no">'+(i?'II':'I')+'</span><h3>'+t(p.t)+'</h3><p>'+t(p.d)+'</p><ul>'+list(p.k[lang],function(k){return '<li>'+k+'</li>'})+'</ul></div>'})}
+function edgeBlock(){return list(C.edge,function(e){return '<div class="eg"><h4>'+t(e.t)+'</h4><p>'+t(e.d)+'</p></div>'})}
+function matsBlock(){return list(C.mats,function(m){return '<div class="mt"><h4>'+t(m.n)+'</h4><dl><dt>'+t(C.L.grades)+'</dt><dd>'+m.g.join(' · ')+'</dd><dt>'+t(C.L.size)+'</dt><dd>'+sz(m)+'</dd><dt>'+t(C.L.use)+'</dt><dd>'+t(m.u)+'</dd></dl></div>'})}
+function factsBlock(){return list(C.facts,function(f){return '<div class="ft"><b>'+t(f.b)+'</b><span>'+t(f.s)+'</span></div>'})}
+function head(extra){return '<header class="hd"><a class="mk" href="#top">INTRAVEST</a><nav>'+navs()+'</nav>'+(extra||'')+'</header>'}
+function foot(){return '<footer class="fo"><span>'+t(C.office)+'</span><span>'+t(C.legal)+'</span></footer>'}
+function rings(n,cx,cy,max){var s='',r=40,k=7;while(r<max){k=(k*16807)%2147483647;s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r.toFixed(1)+'" fill="none" stroke="currentColor" stroke-opacity="'+(.08+(k%100)/400).toFixed(2)+'" stroke-width="'+(.5+(k%10)/10).toFixed(2)+'"/>';r+=3+(k%7)}return '<svg class="art" viewBox="0 0 '+n+' '+n+'" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+s+'</svg>'}
+
+var T={
+// 1 Corporate — conservative navy, trusted trading house
+1:function(){return head()+'<section class="hero" id="top"><p class="ms">'+C.mission+'</p><h1>'+t(C.h1)+'</h1><p class="ld">'+t(C.lead)+'</p></section><section class="band"><div class="row3">'+factsBlock()+'</div></section><section id="s0"><h2>'+t(C.L.pillars)+'</h2><div class="row2">'+pillarsBlock()+'</div></section><section><h2>'+t(C.L.why)+'</h2><div class="row3">'+edgeBlock()+'</div></section><section id="s2"><h2>'+t(C.L.mats)+'</h2><div class="row3">'+matsBlock()+'</div></section><section id="s3" class="ct"><h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()},
+// 2 Editorial — magazine, serif, pull quote
+2:function(){return head()+'<section class="hero" id="top"><p class="ms">'+C.mission+'</p><h1>'+t(C.h1a)+'<em>'+t(C.h1b)+'</em></h1><div class="cols"><p class="dropcap">'+t(C.lead)+' '+t(C.pillars[0].d)+'</p><p>'+t(C.pillars[1].d)+'</p></div></section><blockquote class="pull">'+t(C.edge[2].d)+'</blockquote><section id="s0"><div class="row2">'+pillarsBlock()+'</div></section><section id="s2"><h2>'+t(C.L.mats)+'</h2><div class="row3">'+matsBlock()+'</div></section><section id="s3" class="ct"><h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()},
+// 3 Swiss grid — white, numbered modules, hard grid
+3:function(){var n=0;function num(){return '<span class="gn">'+String(++n).padStart(2,'0')+'</span>'}return head()+'<section class="hero grid" id="top">'+num()+'<h1>'+t(C.h1)+'</h1><p class="ld">'+t(C.lead)+'</p></section><section class="grid" id="s0">'+num()+'<div class="row2">'+pillarsBlock()+'</div></section><section class="grid">'+num()+'<div class="row3">'+edgeBlock()+'</div></section><section class="grid" id="s2">'+num()+'<div class="row3">'+matsBlock()+'</div></section><section class="grid ct" id="s3">'+num()+'<h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()},
+// 4 Dark luxury — rings, gold, generous air
+4:function(){return head()+'<section class="hero" id="top">'+rings(800,560,380,760)+'<div class="in"><p class="ms">'+C.mission+'</p><h1>'+t(C.h1)+'</h1><p class="ld">'+t(C.lead)+'</p></div></section><section id="s0"><p class="lb">'+t(C.since)+'</p><div class="row2">'+pillarsBlock()+'</div></section><section><div class="row3">'+edgeBlock()+'</div></section><section id="s2"><p class="lb">'+t(C.L.mats)+'</p><div class="row3">'+matsBlock()+'</div></section><section id="s3" class="ct"><h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()},
+// 5 Split screen — fixed brand panel left, content right
+5:function(){return '<div class="split"><aside class="side">'+rings(600,300,300,560)+'<a class="mk" href="#top">INTRAVEST</a><div><p class="ms">'+C.mission+'</p><h1>'+t(C.h1a)+'</h1><p class="sub">'+t(C.h1b)+'</p></div>'+mail()+'</aside><div class="main"><nav class="mn">'+navs()+'</nav><section id="top"><p class="ld">'+t(C.lead)+'</p><div class="row3">'+factsBlock()+'</div></section><section id="s0">'+pillarsBlock()+'</section><section><div class="row3">'+edgeBlock()+'</div></section><section id="s2">'+matsBlock()+'</section><section id="s3" class="ct"><h2>'+t(C.contact)+'</h2></section>'+foot()+'</div></div>'},
+// 6 Panels — full-screen snap panels, one idea per screen
+6:function(){return '<div class="snap">'+head()+'<section class="pn" id="top"><p class="ms">'+C.mission+'</p><h1>'+t(C.h1)+'</h1></section><section class="pn"><p class="big">'+t(C.lead)+'</p></section>'+list(C.pillars,function(p,i){return '<section class="pn"'+(i?'':' id="s0"')+'><span class="no">'+(i?'II':'I')+'</span><h2>'+t(p.t)+'</h2><p>'+t(p.d)+'</p></section>'})+'<section class="pn"><div class="row3">'+edgeBlock()+'</div></section><section class="pn" id="s2"><div class="row3">'+matsBlock()+'</div></section><section class="pn ct" id="s3"><h2>'+t(C.contact)+'</h2>'+mail()+foot()+'</section></div>'},
+// 7 Monumental — giant wordmark, almost nothing else above the fold
+7:function(){return head()+'<section class="hero" id="top"><div class="mono">INTRAVEST</div><div class="row2 under"><h1>'+t(C.h1)+'</h1><p class="ld">'+t(C.lead)+'</p></div></section><section id="s0"><div class="row2">'+pillarsBlock()+'</div></section><section class="edges"><div class="row3">'+edgeBlock()+'</div></section><section id="s2"><div class="row3">'+matsBlock()+'</div></section><section id="s3" class="ct"><h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()},
+// 8 Certificate — the page reads like a mill test certificate
+8:function(){var rows=list(C.mats,function(m,i){return '<tr><td>'+(i+1)+'</td><td>'+t(m.n)+'</td><td>'+m.g.join(' / ')+'</td><td>'+m.s.map(t).join(' · ')+'</td><td>'+t(m.u)+'</td></tr>'});return '<div class="doc">'+head('<span class="docno">No. IV-2016-001</span>')+'<section class="hero" id="top"><p class="ms">INSPECTION CERTIFICATE · '+C.mission+'</p><h1>'+t(C.h1)+'</h1><p class="ld">'+t(C.lead)+'</p></section><section id="s0"><table class="kv"><tr><th>'+t(C.pillars[0].t)+'</th><td>'+t(C.pillars[0].d)+'</td></tr><tr><th>'+t(C.pillars[1].t)+'</th><td>'+t(C.pillars[1].d)+'</td></tr>'+list(C.edge,function(e){return '<tr><th>'+t(e.t)+'</th><td>'+t(e.d)+'</td></tr>'})+'</table></section><section id="s2"><div class="tw"><table class="tb"><thead><tr><th>#</th><th>'+t(C.L.mats)+'</th><th>'+t(C.L.grades)+'</th><th>'+t(C.L.size)+'</th><th>'+t(C.L.use)+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section><section id="s3" class="ct"><div class="stamp">CERTIFIED<br>SINCE 2016</div><h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()+'</div>'},
+// 9 Washi — Japanese minimal, vertical line
+9:function(){return head()+'<section class="hero" id="top"><div class="tate">'+(lang==='ja'?'素材と資本を、静かに。':'韓国・日本の製鉄所から')+'</div><div><p class="ms">'+C.mission+'</p><h1>'+t(C.h1)+'</h1><p class="ld">'+t(C.lead)+'</p></div></section><section id="s0"><div class="row2">'+pillarsBlock()+'</div></section><section><div class="row3">'+edgeBlock()+'</div></section><section id="s2"><div class="row3">'+matsBlock()+'</div></section><section id="s3" class="ct"><h2>'+t(C.contact)+'</h2>'+mail()+'</section>'+foot()},
+// 10 Bento — modern tiles
+10:function(){return head()+'<div class="bento" id="top"><div class="tile hero2">'+rings(600,460,200,560)+'<p class="ms">'+C.mission+'</p><h1>'+t(C.h1)+'</h1></div><div class="tile"><p class="ld">'+t(C.lead)+'</p></div>'+list(C.facts,function(f){return '<div class="tile ft"><b>'+t(f.b)+'</b><span>'+t(f.s)+'</span></div>'})+list(C.pillars,function(p,i){return '<div class="tile wide"'+(i?'':' id="s0"')+'><h3>'+t(p.t)+'</h3><p>'+t(p.d)+'</p></div>'})+list(C.edge,function(e){return '<div class="tile eg"><h4>'+t(e.t)+'</h4><p>'+t(e.d)+'</p></div>'})+list(C.mats,function(m,i){return '<div class="tile mt"'+(i?'':' id="s2"')+'><h4>'+t(m.n)+'</h4><p class="g">'+m.g.join(' · ')+'</p><p>'+sz(m)+'</p><p class="u">'+t(m.u)+'</p></div>'})+'<div class="tile wide ct" id="s3"><h2>'+t(C.contact)+'</h2>'+mail()+'</div></div>'+foot()}
+};
+var NAMES=['Corporate','Editorial','Swiss','Dark Luxury','Split','Panels','Monumental','Certificate','Washi','Bento'];
+var cur='4',app=document.getElementById('app'),root=document.documentElement;
+function render(){app.className='t'+cur;app.innerHTML=T[cur]();root.setAttribute('data-t',cur);
+  app.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){var c=b.previousElementSibling;function sel(){var r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(c.textContent).then(function(){b.textContent=lang==='ja'?'コピー済み':'Copied'},sel);else sel()})})}
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var sw=document.getElementById('sw');
+sw.innerHTML=NAMES.map(function(n,i){return '<button type="button" data-t="'+(i+1)+'">'+(i+1)+' '+n+'</button>'}).join('');
+function setT(v){cur=v;sw.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===v))});put('iv-x',v);render();scrollTo(0,0)}
+function setL(l){lang=l;root.lang=l;document.querySelectorAll('.lg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===l))});put('iv-lang',l);render()}
+sw.addEventListener('click',function(e){var b=e.target.closest('button');if(b)setT(b.dataset.t)});
+document.querySelectorAll('.lg button').forEach(function(b){b.addEventListener('click',function(){setL(b.dataset.l)})});
+var h=location.hash.replace('#x','');lang=get('iv-lang')==='ja'?'ja':'en';root.lang=lang;
+document.querySelectorAll('.lg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===lang))});
+setT('4');
 })();
+
 </script>
 
 </body>
