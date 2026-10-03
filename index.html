@@ -7,21 +7,22 @@
 <title>Intravest</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,700;62..125,800&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Sans+JP:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200;62..125,300;62..125,500;62..125,700;62..125,800&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Sans+JP:wght@300;400;500;700&display=swap">
 <style>
-/* Layout: monumental type on stone (direction 7) with a few rounded tiles borrowed from the bento grid (direction 10). */
+/* Layout: monumental type (direction 7) with a few rounded tiles from the bento grid (direction 10), in the dark-luxury palette (direction 4): night navy, gold hairlines, light display weights. */
 :root{
-  --stone:#ECEAE6; --tile:#F6F5F2; --ink:#111111; --dim:#6F6C66; --line:#CFCBC3; --night:#15181C; --night-fg:#ECEAE6; --gold:#B08A4A;
+  --stone:#0E1A2B; --tile:#12213A; --ink:#E9EDF2; --dim:#8E9CB0; --line:#22344B; --night:#0A1422; --night-fg:#E9EDF2; --gold:#C9A86A; --hair:rgba(201,168,106,.38);
   --disp:"Archivo","Arial Narrow",Arial,sans-serif;
   --sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;
   --jp:"IBM Plex Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  color-scheme:light;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--stone);color:var(--ink);font:300 16px/1.75 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 :root[lang="ja"] body{font-family:var(--jp);line-height:1.95}
 :root[lang="ja"] [data-l="en"],:root:not([lang="ja"]) [data-l="ja"]{display:none!important}
-a{color:inherit} :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+a{color:inherit} :focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+::selection{background:var(--gold);color:var(--stone)}
 .wrap{max-width:1360px;margin:0 auto;padding-inline:clamp(16px,4vw,56px)}
 
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--stone) 90%,transparent);backdrop-filter:blur(8px)}
@@ -31,14 +32,17 @@ nav{margin-left:auto;display:flex;gap:24px;font-size:13px}
 nav a{text-decoration:none;color:var(--dim)} nav a:hover{color:var(--ink)}
 .lang{display:flex;gap:2px}
 .lang button{background:none;border:0;color:var(--dim);font:500 12.5px var(--sans);padding:4px 7px;cursor:pointer;border-radius:999px}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--stone)}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--stone)}
 @media (max-width:820px){nav{display:none}.lang{margin-left:auto}}
 
 /* monumental wordmark sized to the column so it never wraps */
-.mono{display:block;width:100%;height:auto;margin:clamp(16px,3vw,40px) 0 clamp(24px,4vw,48px);fill:var(--ink)}
+main{position:relative}
+#halo{position:absolute;z-index:0;right:-18%;top:-140px;width:min(980px,110vw);height:auto;color:var(--gold);opacity:.55;pointer-events:none}
+main>*{position:relative;z-index:1}
+.mono{display:block;width:100%;height:auto;margin:clamp(24px,4vw,56px) 0 clamp(28px,4vw,56px);fill:var(--ink)}
 .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;padding-bottom:clamp(40px,6vw,80px)}
-.ms{font-size:11.5px;letter-spacing:.3em;color:var(--dim);margin:0 0 18px}
-h1{font:500 clamp(24px,2.6vw,38px)/1.25 var(--sans);margin:0;text-wrap:balance}
+.ms{font-size:11.5px;letter-spacing:.3em;color:var(--gold);margin:0 0 18px}
+h1{font:300 clamp(24px,2.6vw,38px)/1.3 var(--sans);margin:0;text-wrap:balance}
 :root[lang="ja"] h1{font:500 clamp(22px,2.3vw,32px)/1.6 var(--jp)}
 .lead{color:var(--dim);margin:0;max-width:34em}
 @media (max-width:820px){.intro{grid-template-columns:1fr}}
@@ -46,30 +50,30 @@ h1{font:500 clamp(24px,2.6vw,38px)/1.25 var(--sans);margin:0;text-wrap:balance}
 /* bento tiles (borrowed) */
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .tile{background:var(--tile);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,2.4vw,30px);min-width:0;position:relative;overflow:hidden}
-.tile.dark{background:var(--night);color:var(--night-fg);border-color:var(--night)}
+.tile.dark{background:var(--night);color:var(--night-fg);border-color:var(--hair)}
 .tile.span2{grid-column:span 2}
-.tile .k{font-size:11px;letter-spacing:.26em;color:var(--dim);margin:0 0 10px}
-.tile.dark .k{color:#9A978F}
-.tile b{display:block;font:800 clamp(40px,5vw,72px)/.9 var(--disp);font-stretch:62%;letter-spacing:-.005em}
-:root[lang="ja"] .tile b.t{font:700 clamp(26px,2.8vw,36px)/1.25 var(--jp)}
+.tile .k{font-size:11px;letter-spacing:.26em;color:var(--gold);margin:0 0 10px}
+.tile.dark .k{color:var(--gold)}
+.tile b{display:block;font:200 clamp(40px,5vw,72px)/.95 var(--disp);font-stretch:62%;letter-spacing:.01em}
+:root[lang="ja"] .tile b.t{font:300 clamp(26px,2.8vw,36px)/1.25 var(--jp)}
 .tile p{margin:10px 0 0;color:var(--dim);font-size:14px}
-.tile.dark p{color:#B5B2AA}
+.tile.dark p{color:#AEB9C8}
 .tile svg{position:absolute;right:-60px;top:-60px;width:260px;height:260px;color:var(--gold);opacity:.9}
 @media (max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.tiles{grid-template-columns:1fr}.tile.span2{grid-column:auto}}
 
 section{padding-block:clamp(72px,10vw,150px)}
-.label{font-size:11.5px;letter-spacing:.3em;color:var(--dim);margin:0 0 28px}
-.pillar{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,5vw,72px);align-items:end;padding-block:clamp(28px,4vw,48px);border-top:1px solid var(--ink)}
-.pillar h2{font:800 clamp(56px,9vw,150px)/.86 var(--disp);font-stretch:62%;letter-spacing:-.01em;margin:0}
-:root[lang="ja"] .pillar h2{font:700 clamp(40px,6vw,88px)/1.15 var(--jp)}
+.label{font-size:11.5px;letter-spacing:.3em;color:var(--gold);margin:0 0 28px}
+.pillar{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,5vw,72px);align-items:end;padding-block:clamp(28px,4vw,48px);border-top:1px solid var(--hair)}
+.pillar h2{font:200 clamp(56px,9vw,150px)/.86 var(--disp);font-stretch:62%;letter-spacing:-.01em;margin:0}
+:root[lang="ja"] .pillar h2{font:300 clamp(40px,6vw,88px)/1.15 var(--jp)}
 .pillar p{margin:0 0 12px;font-size:clamp(16px,1.4vw,18px)}
 .pillar .keys{font:500 12px var(--sans);letter-spacing:.16em;color:var(--dim)}
 @media (max-width:820px){.pillar{grid-template-columns:1fr}}
 
 .edges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .edges .tile b{font-size:clamp(40px,5vw,80px);overflow-wrap:anywhere}
-:root[lang="ja"] .edges .tile b{font:700 clamp(34px,4vw,56px)/1.15 var(--jp)}
+:root[lang="ja"] .edges .tile b{font:300 clamp(34px,4vw,56px)/1.15 var(--jp)}
 @media (max-width:820px){.edges{grid-template-columns:1fr}}
 
 .mats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
@@ -79,14 +83,14 @@ section{padding-block:clamp(72px,10vw,150px)}
 .mat dd{margin:0;font-variant-numeric:tabular-nums}
 @media (max-width:980px){.mats{grid-template-columns:1fr}}
 
-.invite h2{font:800 clamp(52px,10vw,170px)/.86 var(--disp);font-stretch:62%;letter-spacing:-.01em;margin:0}
-:root[lang="ja"] .invite h2{font:700 clamp(34px,5.6vw,76px)/1.3 var(--jp)}
+.invite h2{font:200 clamp(52px,10vw,170px)/.86 var(--disp);font-stretch:62%;letter-spacing:-.01em;margin:0}
+:root[lang="ja"] .invite h2{font:300 clamp(34px,5.6vw,76px)/1.3 var(--jp)}
 .invite .row{display:flex;flex-wrap:wrap;gap:20px 56px;align-items:end;justify-content:space-between;margin-top:36px}
 .invite p{margin:0;color:var(--dim)}
-.mail{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--tile);border:1px solid var(--line);border-radius:999px;padding:10px 12px 10px 22px}
+.mail{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--tile);border:1px solid var(--hair);border-radius:999px;padding:10px 12px 10px 22px}
 .mail code{font:400 clamp(16px,1.5vw,19px) var(--sans);user-select:all;word-break:break-all}
-.mail button{background:var(--ink);color:var(--stone);border:0;border-radius:999px;font:500 12px var(--sans);padding:8px 16px;cursor:pointer}
-footer{border-top:1px solid var(--ink);padding-block:24px 48px;font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+.mail button{background:var(--gold);color:var(--stone);border:0;border-radius:999px;font:500 12px var(--sans);padding:8px 16px;cursor:pointer}
+footer{border-top:1px solid var(--hair);padding-block:24px 48px;font-size:12px;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
 </style>
 </head>
 <body>
@@ -107,7 +111,8 @@ footer{border-top:1px solid var(--ink);padding-block:24px 48px;font-size:12px;co
 </div></header>
 
 <main id="top" class="wrap">
-  <svg class="mono" viewBox="0 0 1000 150" role="img" aria-label="INTRAVEST"><text x="0" y="132" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font:800 170px var(--disp);font-stretch:62%">INTRAVEST</text></svg>
+  <svg id="halo" viewBox="0 0 260 260" aria-hidden="true"></svg>
+  <svg class="mono" viewBox="0 0 1000 150" role="img" aria-label="INTRAVEST"><text x="0" y="132" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font:200 170px var(--disp);font-stretch:62%">INTRAVEST</text></svg>
 
   <div class="intro">
     <div>
@@ -178,8 +183,10 @@ footer{border-top:1px solid var(--ink);padding-block:24px 48px;font-size:12px;co
 
 <script>
 (function(){
-  var NS='http://www.w3.org/2000/svg',svg=document.getElementById('rings'),r=18,k=7;
-  while(r<128){k=(k*16807)%2147483647;var c=document.createElementNS(NS,'circle');c.setAttribute('cx',130);c.setAttribute('cy',130);c.setAttribute('r',r.toFixed(1));c.setAttribute('fill','none');c.setAttribute('stroke','currentColor');c.setAttribute('stroke-opacity',(.15+(k%100)/220).toFixed(2));c.setAttribute('stroke-width',(.5+(k%10)/12).toFixed(2));svg.appendChild(c);r+=2.5+(k%5)}
+  var NS='http://www.w3.org/2000/svg';
+  function rings(svg,r,k,w){while(r<128){k=(k*16807)%2147483647;var c=document.createElementNS(NS,'circle');c.setAttribute('cx',130);c.setAttribute('cy',130);c.setAttribute('r',r.toFixed(1));c.setAttribute('fill','none');c.setAttribute('stroke','currentColor');c.setAttribute('stroke-opacity',(.15+(k%100)/220).toFixed(2));c.setAttribute('stroke-width',((.5+(k%10)/12)*w).toFixed(2));svg.appendChild(c);r+=2.5+(k%5)}}
+  rings(document.getElementById('rings'),18,7,1);
+  rings(document.getElementById('halo'),30,11,.35);
   var root=document.documentElement;
   function setLang(l){root.lang=l;['en','ja'].forEach(function(x){document.getElementById('lang-'+x).setAttribute('aria-pressed',String(x===l))});try{localStorage.setItem('iv-lang',l)}catch(e){}}
   var saved=null;try{saved=localStorage.getItem('iv-lang')}catch(e){}
