@@ -22,7 +22,7 @@ C.mills={k:{en:'Mill-direct',ja:'製鉄所直送'},en:'Supplied mill-direct from
 C.facts=[
   {k:{en:'Founded',ja:'設立'},b:'2016',s:{en:'Seoul, Korea',ja:'韓国・ソウル'}},
   {k:{en:'Headquartered',ja:'本社所在地'},b:{en:'Seoul CBD',ja:'ソウル都心'},s:{en:'Gwanghwamun · Kyobo Life Building 15F',ja:'光化門・教保生命ビル15階'}},
-  {k:{en:'Capital',ja:'資本'},b:{en:'Solid capital',ja:'堅実な資本'},s:{en:'Own capital behind every order',ja:'すべての注文を自己資本で'}},
+  {k:{en:'Capital',ja:'資本'},b:{en:'Own capital',ja:'自己資本'},s:{en:'Behind every order',ja:'すべての注文の裏付け'}},
   {k:{en:'Mill-direct',ja:'製鉄所直送'},b:{en:'Korea · Japan',ja:'韓国・日本'},s:{en:'Direct supply from major integrated mills',ja:'主要一貫製鉄所からの直接供給'}},
   {k:{en:'Focus',ja:'専門'},b:{en:'Ferritic · GBFS',ja:'フェライト系・GBFS'},s:{en:'Stainless coil, tube and slag',ja:'ステンレスコイル・鋼管・スラグ'}}
 ];
