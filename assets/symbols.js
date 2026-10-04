@@ -5,6 +5,8 @@ function spiral(turns,step,r0){var s='M60 60',r=r0||1.5,a=0;for(var i=0;i<turns*
 function dots(n,seed,rmin,rmax,cx,cy,sz){var s='',k=seed;for(var i=0;i<n;i++){k=(k*16807)%2147483647;var a=(k%360)*Math.PI/180,r=rmin+(k%1000)/1000*(rmax-rmin),x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r,q=sz*(.6+(k%7)*.12);s+='<circle class="gr" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+q.toFixed(1)+'" style="animation-delay:'+(-(k%5000)/1000).toFixed(2)+'s"/>'}return s}
 var W='<svg viewBox="0 0 120 120" class="sym ',E='</svg>',G='<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">';
 var S={
+// coil0: the original spiral from the first V series
+coil0:W+'coil c0" aria-hidden="true">'+'<path class="draw" d="M60 60m-2 0a2 2 0 1 0 4 0a4 4 0 1 1 -8 0a6 6 0 1 0 12 0a8 8 0 1 1 -16 0a10 10 0 1 0 20 0a12 12 0 1 1 -24 0a14 14 0 1 0 28 0a16 16 0 1 1 -32 0a18 18 0 1 0 36 0a20 20 0 1 1 -40 0a22 22 0 1 0 44 0a24 24 0 1 1 -48 0a26 26 0 1 0 52 0a28 28 0 1 1 -56 0a30 30 0 1 0 60 0a32 32 0 1 1 -64 0a34 34 0 1 0 68 0a36 36 0 1 1 -72 0a38 38 0 1 0 76 0a40 40 0 1 1 -80 0a42 42 0 1 0 84 0a44 44 0 1 1 -88 0a46 46 0 1 0 92 0a48 48 0 1 1 -96 0" fill="none" stroke="currentColor" stroke-width="1.4"/>'+E,
 // coil
 coil1:W+'coil c1" aria-hidden="true">'+G+'<path class="draw" d="'+spiral(12,8)+'"/></g>'+E,
 coil2:W+'coil c2" aria-hidden="true">'+G+'<ellipse cx="60" cy="60" rx="46" ry="30"/><ellipse cx="60" cy="60" rx="34" ry="22"/><ellipse cx="60" cy="60" rx="22" ry="14"/><ellipse cx="60" cy="60" rx="10" ry="6"/><path class="sweep" d="M14 60a46 30 0 0 1 46-30"/></g>'+E,
@@ -27,5 +29,5 @@ slag4:W+'slag s4" aria-hidden="true">'+G+'<path class="wave" d="M-10 84q15-8 30 
 slag5:W+'slag s5" aria-hidden="true">'+G+'<path d="M10 70h100l-10 26H20z"/><path d="M60 70V40M60 40h30" /><path class="hoist" d="M90 40v18"/></g><g fill="currentColor"><circle class="load" cx="90" cy="60" r="3.5"/>'+dots(18,11,0,30,60,84,1.6)+'</g>'+E,
 slag6:W+'slag s6" aria-hidden="true">'+G+'<circle cx="60" cy="60" r="46"/></g><g fill="currentColor">'+dots(60,19,0,42,60,60,1.7)+'</g>'+E
 };
-window.IVSYM={all:S,pick:{coil:'coil1',pipe:'pipe1',slag:'slag1'},get:function(id){return S[this.pick[id]]||S[id]||''}};
+window.IVSYM={all:S,pick:{coil:'coil0',pipe:'pipe3',slag:'slag1'},get:function(id){return S[this.pick[id]]||S[id]||''}};
 })();

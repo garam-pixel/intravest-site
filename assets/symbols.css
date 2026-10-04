@@ -1,7 +1,7 @@
 /* Product symbol animations. The <svg class="sym"> markup comes from symbols.js. */
 .sym{width:100%;height:100%;display:block;overflow:visible}
 .sym .draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:symdraw 7s ease-in-out infinite alternate}
-.sym.c1 .draw{animation:symdraw 7s ease-in-out infinite alternate,symspin 40s linear infinite;transform-origin:50% 50%}
+.sym.c0 .draw,.sym.c1 .draw{animation:symdraw 7s ease-in-out infinite alternate,symspin 40s linear infinite;transform-origin:50% 50%}
 .sym .sweep{stroke-width:3;animation:symspin 8s linear infinite;transform-origin:60px 60px}
 .sym .ticks{animation:symspin 30s linear infinite;transform-origin:60px 60px}
 .sym .strip{stroke-dasharray:60;stroke-dashoffset:60;animation:symstrip 3s ease-out infinite}

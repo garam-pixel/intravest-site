@@ -22,7 +22,7 @@ C.mills={k:{en:'Mill-direct',ja:'製鉄所直送'},en:'Supplied mill-direct from
 C.facts=[
   {k:{en:'Founded',ja:'設立'},b:'2016',s:{en:'Seoul, Korea',ja:'韓国・ソウル'}},
   {k:{en:'Headquartered',ja:'本社所在地'},b:{en:'Seoul CBD',ja:'ソウル都心'},s:{en:'Gwanghwamun · Kyobo Life Building 15F',ja:'光化門・教保生命ビル15階'}},
-  {k:{en:'Capital',ja:'資本'},b:{en:'Own capital',ja:'自己資本'},s:{en:'Behind every order',ja:'すべての注文の裏付け'}},
+  {k:{en:'Capital',ja:'資本'},b:{en:'Solid capital',ja:'堅実な資本'},s:{en:'Own capital behind every order',ja:'すべての注文を自己資本で'}},
   {k:{en:'Mill-direct',ja:'製鉄所直送'},b:{en:'Korea · Japan',ja:'韓国・日本'},s:{en:'Direct supply from major integrated mills',ja:'主要一貫製鉄所からの直接供給'}},
   {k:{en:'Focus',ja:'専門'},b:{en:'Ferritic · GBFS',ja:'フェライト系・GBFS'},s:{en:'Stainless coil, tube and slag',ja:'ステンレスコイル・鋼管・スラグ'}}
 ];
@@ -67,7 +67,7 @@ C.sup={
     {t:{en:'Financing in your form',ja:'お客様の形でのファイナンス'},d:{en:'L/C, T/T or terms on our own account, structured around the customer’s cash cycle.',ja:'L/C、T/T、自社勘定での決済条件を、お客様の資金サイクルに合わせて設計。'}},
     {t:{en:'Trust',ja:'信頼'},d:{en:'Long-term supply relationships with the mills, and the same commitment to every customer.',ja:'製鉄所との長期供給関係と、すべてのお客様への変わらぬ献身。'}}
   ]},
-  scenes:[{id:'coilline',t:{en:'Coil, cold-rolled at the mill',ja:'製鉄所で冷延されるコイル'}},{id:'tubemill',t:{en:'Tube, formed and welded',ja:'成形・溶接される鋼管'}},{id:'vessel',t:{en:'Bulk vessel, loaded at the mill berth',ja:'製鉄所の岸壁で積み込まれるバラ積み船'}}]
+  fta:{k:{en:'FTA documentation support',ja:'FTA書類サポート'},d:{en:'Korea’s FTA network lets many customers import duty-free or at reduced tariffs. We prepare the certificates of origin and supporting documents for the agreement that applies.',ja:'韓国のFTAネットワークにより、多くのお客様が無税または低関税で輸入できます。該当する協定の原産地証明書と関連書類を当社が準備します。'},groups:[{k:{en:'ASEAN and Asia-Pacific',ja:'ASEAN・アジア太平洋'},v:'Korea–ASEAN FTA · RCEP · Korea–Vietnam · Korea–Indonesia CEPA · Korea–Philippines · Korea–Cambodia · Korea–Singapore · Korea–India CEPA · Korea–China · Korea–Australia · Korea–New Zealand'},{k:{en:'Americas',ja:'米州'},v:'KORUS FTA (United States) · Korea–Canada · Korea–Chile · Korea–Peru · Korea–Colombia · Korea–Central America'},{k:{en:'Europe and Middle East',ja:'欧州・中東'},v:'Korea–EU FTA · Korea–UK FTA · Korea–EFTA · Korea–Türkiye · Korea–Israel'}]}
 };
 // products
 C.products=[
@@ -90,6 +90,10 @@ C.products=[
     spec:[[{en:'Form',ja:'形態'},{en:'Granulated, glassy',ja:'水砕・ガラス質'}],[{en:'Lot',ja:'ロット'},'25,000 – 50,000 MT'],[{en:'Shipment',ja:'輸送'},{en:'Bulk vessel, loaded at the mill berth',ja:'バラ積み船、製鉄所の岸壁で積み込み'}]],
     use:{en:['Slag cement','Ready-mix concrete','Lower-carbon binders'],ja:['高炉セメント','生コンクリート','低炭素結合材']}}
 ];
+C.ct.f={product:{en:'Product',ja:'製品'},port:{en:'Destination port',ja:'仕向港'},company:{en:'Company',ja:'会社名'},msg:{en:'Inquiry (grade / size / quantity / usage)',ja:'お問い合わせ（鋼種／サイズ／数量／用途）'},send:{en:'Write email',ja:'メールを作成'}};
+C.shared={g:['409','409L','429','439','441','AL409','AL439','430LX'],
+  grades:[['409 · 409L',{en:'11% Cr, Ti-stabilized. General exhaust: tailpipes, mufflers, converter shells.',ja:'11%Cr、Ti安定化。テールパイプ・マフラー・コンバーターシェル。'}],['439',{en:'17–18% Cr, Ti-stabilized. Oxidation and chloride resistance beyond 409; front pipes, tubular manifolds.',ja:'17〜18%Cr、Ti安定化。409を超える耐酸化・耐塩化物性。フロントパイプ・管状マニホールド。'}],['441',{en:'18% Cr, Ti + Nb dual-stabilized. High-temperature strength above 409 and 439, good weld ductility.',ja:'18%Cr、Ti+Nb二重安定化。409・439を上回る高温強度と良好な溶接延性。'}],['AL409 · AL439',{en:'Aluminized ferritic for mufflers. Strong resistance to exterior discoloration, adopted by Korean and US automakers. Excellent formability: no coating cracks during forming. Specs matched to Hyundai-Kia and Japanese OEM standards; running-change-ready by project code.',ja:'マフラー向けアルミめっきフェライト系。外観変色への強い耐性で韓国・米国の自動車メーカーが採用。成形中にめっき面が割れない優れた加工性。現代起亜・日系OEM規格に合わせた仕様で、プロジェクトコードごとのランニングチェンジに対応。'}],['430LX',{en:'Low-carbon, Ti-stabilized 16–18% Cr ferritic for sanitary tube and construction; good weldability and formability.',ja:'低炭素Ti安定化16〜18%Crフェライト系。衛生配管・建築用途、良好な溶接性と加工性。'}]],
+  use:{en:['Automotive exhaust systems (Hyundai-Kia and Japanese OEM programs)','Mufflers (AL409 · AL439)','Tube and pipe mills','Sanitary tube and construction (430LX)'],ja:['自動車排気系（現代起亜・日系OEMプログラム）','マフラー（AL409・AL439）','造管メーカー','衛生配管・建築（430LX）']}};
 C.L.grades2={en:'Grade guide',ja:'鋼種ガイド'};C.L.scenes={en:'At the mill',ja:'製鉄所にて'};
 C.L.tag={en:'Our line',ja:'私たちの一行'};
 })(window.IVC);

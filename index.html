@@ -134,7 +134,7 @@ table{color:inherit;font:inherit}
 .scrolled .flo .mk{font-size:24px}
 .inner .flo{--lg:#fff;color:#fff} .scrolled.inner .flo{--lg:var(--fg)} .inner .scrolled .flo{--lg:var(--fg)}
 .bgr{margin-right:104px} @media (max-width:900px){.flo{padding:10px 16px}.flo nav{display:none}.flo .mk{font-size:22px}}
-.fo .mk{display:block;font:inherit;letter-spacing:0;color:#fff} .fo .lock{color:#fff}
+.fo .mk{display:block;font:inherit;letter-spacing:0;color:#fff} .fo .lock{color:#fff} .fo .wm{--lg:#fff;color:#fff}
 /* taglines */
 h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.03em;max-width:12ch;color:inherit;text-transform:none} h1.tg.giant{font-size:clamp(48px,9.6vw,160px);max-width:11ch} .hero h1.tg.mast{font-size:clamp(56px,11vw,190px);max-width:none;border-bottom:2px solid var(--fg);padding-bottom:24px}
 :root[lang="ja"] h1.tg{font:700 clamp(30px,5.4vw,84px)/1.25 var(--sans);letter-spacing:-.01em;max-width:14ch} :root[lang="ja"] h1.tg.giant{font-size:clamp(34px,6.6vw,104px)}
@@ -153,7 +153,7 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 /* product symbols */
 .symw{display:block;width:72px;height:72px;color:var(--ac)} .prod .symw{margin-bottom:18px} .prods.big .prod{min-height:340px} .prods.big .symw{width:110px;height:110px}
 .symw.hero{width:clamp(120px,16vw,200px);height:clamp(120px,16vw,200px);margin:0 0 28px}
-.symrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px} .symrow a{display:flex;flex-direction:column;gap:14px;align-items:flex-start;padding:24px;border:1px solid rgba(255,255,255,.18);border-radius:20px;color:#fff;font:600 15px var(--sans)} .symrow a .symw{color:#fff}
+.symrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px} .symrow a{display:flex;flex-direction:column;gap:14px;align-items:flex-start;padding:22px;border:1px solid rgba(255,255,255,.18);border-radius:20px;color:#fff;font:600 15px var(--sans)} .symrow a .symw{color:#fff;width:48px;height:48px}
 .symrow.light a{border-color:var(--line);color:var(--fg)} .symrow.light a .symw{color:var(--ac)} .symrow a:hover{border-color:var(--ac)}
 @media (max-width:760px){.symrow{grid-template-columns:1fr}}
 .pd .desc{color:var(--dim);margin:0 0 36px;font-size:16px}
@@ -206,23 +206,12 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 .th-dark .flo{--lg:#fff} .th-light .flo,.th-paper .flo{--lg:var(--navy)} .th-light,.th-paper{--lg:var(--navy)} .v3.home .flo,.v7.home .flo,.v8.home .flo,.v10.home .flo{--lg:var(--navy);color:var(--fg)}
 .th-dark .mq{color:#A39A90}
 /* V10 hero: tagline and wordmark side by side */
-.qrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center} .qrow .wm.hero{font-size:clamp(36px,6.4vw,110px);--lg:var(--navy)}
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center} .qrow .wm.hero{font-size:clamp(28px,4.4vw,74px);--lg:var(--navy)}
 @media (max-width:900px){.qrow{grid-template-columns:1fr}.qrow .wm.hero{font-size:clamp(40px,11vw,72px)}}
 /* material supply card in white */
 .card.supply{color:var(--navy)} .card.supply::before{background:linear-gradient(160deg,#FFFFFF,#EEF2F7);box-shadow:inset 0 0 0 1px var(--line)} .card.supply h3{color:var(--navy)} .card.supply p{color:#3A4654} .card.supply .no{color:var(--navy)} .card.supply li{border-color:rgba(11,42,74,.3)}
 .th-dark .card.supply::before{background:linear-gradient(160deg,#F6F7F9,#DDE3EA)}
-/* mill scenes */
-.scenes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px} .scene{margin:0;background:#06101C;color:#CFE0F5;border-radius:20px;padding:20px 20px 14px;overflow:hidden}
-.scene .scn{width:100%;height:auto;display:block} .scene figcaption{font:500 13px var(--sans);color:#8FA6C4;margin-top:10px}
-.scn .roll{animation:symspin 6s linear infinite;transform-box:fill-box;transform-origin:center} .scn .roll circle,.scn .roll path{transform-box:fill-box;transform-origin:center;animation:symspin 3s linear infinite}
-.scn .stripflow,.scn .flow{animation:symdash 1.2s linear infinite} .scn .coilgrow circle{transform-box:fill-box;transform-origin:center;animation:sympulse 4s ease-in-out infinite} .scn .coilgrow circle:nth-child(2){animation-delay:-1.3s} .scn .coilgrow circle:nth-child(3){animation-delay:-2.6s}
-.scn .spark{animation:symspark 1s ease-in-out infinite} .scn .sparks{animation:symspark 1s ease-in-out infinite reverse;transform-box:fill-box;transform-origin:bottom}
-.scn .ship{animation:bob 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center} .scn .wave{animation:symwave 3s linear infinite} .scn .w2{animation-duration:4.4s;animation-direction:reverse}
-.scn .hoist,.scn .bucket{animation:symhoist 3s ease-in-out infinite} .scn .grain{animation:symfall 1.6s linear infinite}
-@media (min-width:1100px){.items.n4{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-.6deg)}}
-@media (max-width:900px){.scenes{grid-template-columns:1fr}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (prefers-reduced-motion:reduce){.scn *{animation:none!important}}
+
 /* inner pages open on a dark gradient: white wordmark until the header pill appears */
 #app.inner .flo{--lg:#fff;color:#fff} .scrolled #app.inner .flo,.scrolled #app.home .flo{--lg:var(--fg);color:var(--fg)}
 /* switcher */
@@ -230,6 +219,13 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 .sw button{font:500 12px var(--sans);color:#BBB;background:none;border:0;border-radius:999px;padding:8px 11px;cursor:pointer;white-space:nowrap} .sw button[aria-pressed="true"]{background:#F2F2F2;color:#111}
 .lg{position:fixed;top:calc(18px + env(safe-area-inset-top,0px));right:12px;z-index:60;display:flex;background:rgba(14,14,14,.82);border-radius:999px;padding:3px}
 .lg button{font:500 11.5px var(--sans);color:#BBB;background:none;border:0;border-radius:999px;padding:6px 10px;cursor:pointer} .lg button[aria-pressed="true"]{background:#F2F2F2;color:#111}
+
+/* supply page: light hero, product tabs, shared block */
+#app .sh.light{color:var(--navy)} #app .sh.light h1{color:var(--navy)} #app .sh.light .crumb,#app .sh.light .ms{color:var(--navy2)}
+#app.inner.sup-light .flo{--lg:var(--navy);color:var(--fg)}
+.ptabw{padding-bottom:0} .ptabs{display:flex;flex-wrap:wrap;gap:8px} .ptabs a{font:600 14px var(--sans);border:1px solid var(--line);border-radius:999px;padding:10px 20px;color:var(--dim)} .ptabs a[aria-current]{background:var(--navy);border-color:var(--navy);color:#fff}
+.pd.fixed{border-top:1px solid var(--line)}
+@media (min-width:1100px){.items.n4{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body>
