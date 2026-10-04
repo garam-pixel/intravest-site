@@ -125,6 +125,6 @@ function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 if(sw){sw.innerHTML=NAMES.map(function(n,i){return '<button type="button" data-v="'+(i+1)+'">'+(i+1)+' '+n+'</button>'}).join('');
 sw.addEventListener('click',function(e){var b=e.target.closest('button');if(b)location.hash='d'+b.dataset.v+(page?'/'+page+(arg?'/'+arg:''):'')})}
 document.querySelectorAll('.lg button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;root.lang=lang;document.querySelectorAll('.lg button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});put('iv-lang',lang);render()})});
-lang=get('iv-lang')==='ja'?'ja':'en';root.lang=lang;document.querySelectorAll('.lg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===lang))});
+lang=/^(ja|ko)$/.test(get('iv-lang')||'')?get('iv-lang'):'en';root.lang=lang;document.querySelectorAll('.lg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===lang))});
 addEventListener('hashchange',route);route();
 })();

@@ -7,14 +7,19 @@
 <title>Intravest</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,300;62..125,500;62..125,700;62..125,800;62..125,900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
-<link rel="stylesheet" href="assets/symbols.css?v=1508752">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Public+Sans:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,300;62..125,500;62..125,700;62..125,800;62..125,900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+<link rel="stylesheet" href="assets/symbols.css?v=d00e1e9">
 <style>
 /* V series: Furnace Split x Molten with the 2026-09 CI wordmark, a floating header, product symbols and more motion. Shared chrome and inner pages first, then V-specific rules. */
 :root{--sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;--disp:"Archivo","Arial Narrow",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;--gut:clamp(16px,5vw,80px)}
 *{box-sizing:border-box}
 body{margin:0;background:#0A0908;font:400 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 :root[lang="ja"] body{line-height:1.9}
+:root[lang="ko"] body{font-family:"Noto Sans KR","IBM Plex Sans",system-ui,sans-serif;line-height:1.8;word-break:keep-all}
+:root[lang="ko"] h1.tg{font:800 clamp(34px,6vw,96px)/1.2 "Noto Sans KR",sans-serif;letter-spacing:-.03em;max-width:14ch}
+:root[lang="ko"] .sh h1{font:700 clamp(30px,4.6vw,66px)/1.25 "Noto Sans KR",sans-serif;text-transform:none}
+:root[lang="ko"] .card h3,:root[lang="ko"] .half h2,:root[lang="ko"] .snap .in h2,:root[lang="ko"] .ctab h2,:root[lang="ko"] .nx b,:root[lang="ko"] .fig b{font-family:"Noto Sans KR",sans-serif;font-weight:700;text-transform:none;letter-spacing:-.02em}
+:root[lang="ko"] .card h3{font-size:clamp(28px,3.4vw,48px);line-height:1.2} :root[lang="ko"] .fig b{font-size:clamp(22px,2.4vw,34px);line-height:1.2} :root[lang="ko"] .ctab h2{font-size:clamp(28px,4vw,54px);line-height:1.3} :root[lang="ko"] .nx b{font-size:clamp(22px,3vw,40px)}
 a{color:inherit;text-decoration:none} :focus-visible{outline:2px solid var(--ac);outline-offset:3px}
 #app{min-height:100vh;background:var(--bg);color:var(--fg);position:relative}
 #app.fade main{animation:fade .6s ease both} @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -255,14 +260,15 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 <body>
 
 
-<div class="lg" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="ja" aria-pressed="false">日本語</button></div>
+<div class="lg" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="ja" aria-pressed="false">日本語</button><button type="button" data-l="ko" aria-pressed="false">한국어</button></div>
 <div id="app"></div>
-<script src="assets/symbols.js?v=1508752"></script>
+<script src="assets/symbols.js?v=d00e1e9"></script>
 <script>window.IV_SITE=10;window.IV_W3F_KEY=""</script>
-<script src="assets/fx.js?v=1508752"></script>
-<script src="assets/y-content.js?v=1508752"></script>
-<script src="assets/v-content.js?v=1508752"></script>
-<script src="assets/concepts-v.js?v=1508752"></script>
+<script src="assets/fx.js?v=d00e1e9"></script>
+<script src="assets/y-content.js?v=d00e1e9"></script>
+<script src="assets/v-content.js?v=d00e1e9"></script>
+<script src="assets/ko-content.js?v=d00e1e9"></script>
+<script src="assets/concepts-v.js?v=d00e1e9"></script>
 <script src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
 
 </body>
