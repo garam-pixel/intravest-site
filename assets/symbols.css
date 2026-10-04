@@ -1,0 +1,32 @@
+/* Product symbol animations. The <svg class="sym"> markup comes from symbols.js. */
+.sym{width:100%;height:100%;display:block;overflow:visible}
+.sym .draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:symdraw 7s ease-in-out infinite alternate}
+.sym.c1 .draw{animation:symdraw 7s ease-in-out infinite alternate,symspin 40s linear infinite;transform-origin:50% 50%}
+.sym .sweep{stroke-width:3;animation:symspin 8s linear infinite;transform-origin:60px 60px}
+.sym .ticks{animation:symspin 30s linear infinite;transform-origin:60px 60px}
+.sym .strip{stroke-dasharray:60;stroke-dashoffset:60;animation:symstrip 3s ease-out infinite}
+.sym .runx{animation:symdash 1.2s linear infinite}
+.sym .ring{transform-origin:60px 60px} .sym .r1{animation:symspin 24s linear infinite} .sym .r2{animation:symspin 16s linear infinite reverse} .sym .r3{animation:symspin 10s linear infinite}
+.sym .run{stroke-linecap:round;animation:symspin 9s linear infinite;transform-origin:60px 60px} .sym .run.r2{animation-direction:reverse;animation-duration:7s}
+.sym .flow{animation:symdash 1.4s linear infinite}
+.sym .tube{animation:sympulse 2.4s ease-in-out infinite}
+.sym .seam{animation:symdash 1s linear infinite} .sym .spark{animation:symspark 1s ease-in-out infinite}
+.sym .depth{transform-origin:60px 60px;animation:symdepth 4s ease-in-out infinite} .sym .d2{animation-delay:-1s} .sym .d3{animation-delay:-2s} .sym .d4{animation-delay:-3s}
+.sym .gr{animation:symdrift 5s ease-in-out infinite alternate;transform-origin:center;transform-box:fill-box}
+.sym .fall{animation:symfall 2.2s linear infinite}
+.sym .hex{animation:sympulse 3s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.sym .wave{animation:symwave 3s linear infinite} .sym .w2{animation-duration:4.2s;animation-direction:reverse}
+.sym .hoist{animation:symhoist 2.6s ease-in-out infinite} .sym .load{animation:symload 2.6s ease-in-out infinite}
+@keyframes symdraw{to{stroke-dashoffset:0}}
+@keyframes symspin{to{transform:rotate(360deg)}}
+@keyframes symstrip{to{stroke-dashoffset:0}}
+@keyframes symdash{to{stroke-dashoffset:-28}}
+@keyframes sympulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes symspark{0%,100%{opacity:.3;r:2}50%{opacity:1;r:4}}
+@keyframes symdepth{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.86);opacity:.5}}
+@keyframes symdrift{from{transform:translate(-1.5px,1px) scale(.85);opacity:.55}to{transform:translate(1.5px,-1.5px) scale(1.1);opacity:1}}
+@keyframes symfall{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(56px);opacity:0}}
+@keyframes symwave{to{transform:translateX(30px)}}
+@keyframes symhoist{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+@keyframes symload{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){.sym *{animation:none!important}.sym .draw{stroke-dashoffset:0}.sym .strip{stroke-dashoffset:0}}
