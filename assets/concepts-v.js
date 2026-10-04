@@ -67,8 +67,8 @@ var HOME={
 8:function(){return '<section class="hero ed"><p class="ms">'+C.mission+'</p>'+tagline('mast')+'<div class="cols"><div class="win">'+grad(FIRE,1.3)+embers(120)+'</div><div>'+sub()+more('company')+'</div></div></section>'+sec('BUSINESS',cards())+millband()+sec('PRODUCTS','<div class="edrow">'+list(C.products,function(p,i){return '<a class="edp rv" href="'+href('product/'+p.id)+'">'+sym(p.id)+'<div><span class="no">'+pad(i)+'</span><h4>'+t(p.n)+'</h4><p>'+t(p.tag)+'</p></div></a>'})+'</div>')+cta()},
 // 9 cinematic: centred tagline rising word by word, menu behind ☰
 9:function(){return '<section class="hero full cine" data-tilt>'+grad(FIRE,1)+embers(220)+'<div class="in"><p class="ms">'+C.mission+'</p>'+tagline('giant')+'<p class="sub" data-depth=".3">'+t(C.sub)+'</p></div><span class="scroll">SCROLL</span></section><section class="manifesto"><p class="rv">'+t(C.pillars.investment.d)+'</p></section>'+sec('BUSINESS',cards())+millband()+sec('PRODUCTS',prods())+cta()},
-// 10 light and quiet: a thin ember line, symbols breathing
-10:function(){return '<div class="ember">'+grad(EMBER,.6)+'</div><section class="hero quiet"><p class="ms">'+C.mission+'</p>'+tagline()+sub()+'<div class="symrow light">'+list(C.products,function(p){return '<a href="'+href('product/'+p.id)+'" class="rv">'+sym(p.id)+'<span>'+t(p.n)+'</span></a>'})+'</div></section>'+std()}
+// 10 light and quiet: symbols breathing
+10:function(){return '<section class="hero quiet"><p class="ms">'+C.mission+'</p>'+tagline()+sub()+'<div class="symrow light">'+list(C.products,function(p){return '<a href="'+href('product/'+p.id)+'" class="rv">'+sym(p.id)+'<span>'+t(p.n)+'</span></a>'})+'</div></section>'+std()}
 };
 
 // ---- inner pages ----
