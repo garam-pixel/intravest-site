@@ -1,0 +1,117 @@
+// Intravest V series: ten directions grown from Y3 (Furnace Split) and Y7 (Molten) with more motion,
+// a floating wordmark, sogo-shosha style taglines, product symbols and the mill line moved mid-page.
+// Routes: #d<direction>/<page>[/<id>]  (site build: #/<page>[/<id>])
+(function(){
+var C=window.IVC,lang='en',cur='1',page='',arg='';
+var FIRE='#050505,#7A1E0E,#F08A3C',MIX='#06101C,#0B2A4A,#E07A45',BLUE='#06101C,#0B2A4A,#7FA6E8',STEEL='#0F1114,#3A4553,#AEB8C4',EMBER='#1A0A06,#C2492B,#F6B26B',ICE='#06101C,#0B2A4A,#9CC3F0';
+var D={
+ 1:{n:'Furnace Split II',th:'dark'},2:{n:'Molten Marquee',th:'dark'},3:{n:'Cold / Hot Tiles',th:'light'},4:{n:'Logo Monument',th:'dark'},5:{n:'Night Mill II',th:'dark'},
+ 6:{n:'Dual Field',th:'dark'},7:{n:'Corporate Inset II',th:'light'},8:{n:'Editorial Heat II',th:'paper'},9:{n:'Cinematic II',th:'dark'},10:{n:'Ember Line II',th:'light'}
+};
+function t(x){return x==null?'':(typeof x==='string'?x:(x[lang]!=null?x[lang]:x.en))}
+function list(a,f){return a.map(f).join('')}
+function L(k){return t(C.L[k])}
+var SITE=window.IV_SITE?String(window.IV_SITE):'';
+function href(p){return SITE?'#/'+(p||''):'#d'+cur+(p?'/'+p:'')}
+function pad(i){return (i<9?'0':'')+(i+1)}
+function grad(c,s,cls){return '<canvas class="fxc '+(cls||'')+'" data-fx="gradient" data-c="'+c+'" data-s="'+(s||1)+'" aria-hidden="true"></canvas>'}
+function embers(n,cls){return '<canvas class="fxc em '+(cls||'')+'" data-fx="embers" data-n="'+(n||140)+'" aria-hidden="true"></canvas>'}
+// wordmark per the 2026-09-30 CI (Public Sans 800, IN and VEST outlined 1.9px, TRA solid, navy #0B2A4A). `fire` fills TRA with the moving gradient.
+function logo(cls,fire){return '<span class="wm '+(cls||'')+'" role="img" aria-label="INTRAVEST"><b class="o">IN</b><b class="f'+(fire?' fire':'')+'">TRA</b><b class="o">VEST</b></span>'}
+function lockup(){return '<div class="lock">'+logo('sm')+'<i class="rule"></i><div class="tg2"><b>'+t(C.sub)+'</b><span>Seoul, Korea</span></div></div>'}
+function navs(){return list(C.nav,function(n){return '<a href="'+href(n[0])+'"'+(page===n[0]||(page==='product'&&n[0]==='products')?' aria-current="page"':'')+'>'+t(n[1])+'</a>'})}
+function head(){return '<header class="flo"><a class="mk" href="'+href('')+'">'+logo()+'</a><nav>'+navs()+'</nav><button type="button" class="bgr" aria-label="Menu" aria-expanded="false"><i></i><i></i></button></header>'}
+function menu(){return '<div class="ov" hidden><div class="ovin">'+list(C.nav,function(n,i){return '<a href="'+href(n[0])+'"><span>'+pad(i)+'</span>'+t(n[1])+'</a>'})+'</div><p>'+C.addr+'</p></div>'}
+function mail(){return '<div class="mail"><code>'+C.addr+'</code><button type="button" class="cp">'+L('copy')+'</button></div>'}
+function more(p,txt){return '<a class="more" href="'+href(p)+'">'+(txt||t(C.more))+' <span aria-hidden="true">→</span></a>'}
+function foot(){return '<footer class="fo"><div class="fot"><a class="mk" href="'+href('')+'">'+lockup()+'</a><nav>'+navs()+'</nav></div><div class="fob"><span>'+t(C.office)+' · Business reg. 723-86-00752</span><span>© '+t(C.legal)+'</span></div></footer>'}
+function tagline(cls){return '<h1 class="tg '+(cls||'')+'" data-words>'+t(C.tag[cur])+'</h1>'}
+function sub(){return '<p class="ld">'+t(C.sub)+'</p>'}
+// product symbols: coil spiral, tube ring, slag granules
+var SYM={
+ coil:'<svg viewBox="0 0 120 120" class="sym coil" aria-hidden="true"><path d="M60 60m-2 0a2 2 0 1 0 4 0a4 4 0 1 1 -8 0a6 6 0 1 0 12 0a8 8 0 1 1 -16 0a10 10 0 1 0 20 0a12 12 0 1 1 -24 0a14 14 0 1 0 28 0a16 16 0 1 1 -32 0a18 18 0 1 0 36 0a20 20 0 1 1 -40 0a22 22 0 1 0 44 0a24 24 0 1 1 -48 0a26 26 0 1 0 52 0a28 28 0 1 1 -56 0a30 30 0 1 0 60 0a32 32 0 1 1 -64 0a34 34 0 1 0 68 0a36 36 0 1 1 -72 0a38 38 0 1 0 76 0a40 40 0 1 1 -80 0a42 42 0 1 0 84 0a44 44 0 1 1 -88 0a46 46 0 1 0 92 0a48 48 0 1 1 -96 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
+ pipe:'<svg viewBox="0 0 120 120" class="sym pipe" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="60" cy="60" rx="44" ry="44"/><ellipse cx="60" cy="60" rx="32" ry="32"/><path class="run" d="M60 16a44 44 0 0 1 44 44"/><path class="run r2" d="M28 60a32 32 0 0 1 32-32"/><path d="M16 60h-8M112 60h8M60 16v-8M60 112v8" opacity=".5"/></g></svg>',
+ slag:'<svg viewBox="0 0 120 120" class="sym slag" aria-hidden="true"><g fill="currentColor">'+(function(){var s='',k=7;for(var i=0;i<42;i++){k=(k*16807)%2147483647;var a=(k%360)*Math.PI/180,r=10+(k%1000)/1000*42,x=60+Math.cos(a)*r,y=60+Math.sin(a)*r,q=1.2+(k%7)*.45;s+='<circle class="gr" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+q.toFixed(1)+'" style="animation-delay:'+(-(k%5000)/1000).toFixed(2)+'s"/>'}return s})()+'</g></svg>'
+};
+function sym(id,cls){return '<span class="symw '+(cls||'')+'">'+SYM[id]+'</span>'}
+
+function figs(){return '<div class="figs">'+list(C.facts,function(f,i){var b=t(f.b),num=/^\d+$/.test(b);return '<div class="fig rv"><i>'+t(f.k)+'</i><b'+(num?' data-count="'+b+'">0':'>'+b)+'</b><span>'+t(f.s)+'</span></div>'})+'</div>'}
+function millband(){return '<section class="band mills"><div class="mrow rv"><span class="k">'+t(C.mills.k)+'</span><p>'+t(C.mills)+'</p></div>'+figs()+'</section>'}
+function pcard(id,i){var p=C.pillars[id];return '<a class="card '+id+' rv" href="'+href(id)+'" data-tilt>'+(id==='supply'?embers(90):'')+'<span class="no">'+pad(i)+'</span><h3 data-depth=".6">'+t(p.t)+'</h3><p data-depth=".3">'+t(p.d)+'</p><ul>'+list(p.k[lang],function(k){return '<li>'+k+'</li>'})+'</ul><span class="go">'+t(C.more)+' →</span></a>'}
+function cards(){return '<div class="cards">'+pcard('investment',0)+pcard('supply',1)+'</div>'}
+function edges(){return '<div class="edges">'+list(C.edge,function(e,i){return '<div class="edge rv"><span class="no">'+pad(i)+'</span><h4>'+t(e.t)+'</h4><p>'+t(e.d)+'</p></div>'})+'</div>'}
+function prods(cls){return '<div class="prods '+(cls||'')+'">'+list(C.products,function(p,i){return '<a class="prod rv" href="'+href('product/'+p.id)+'">'+sym(p.id)+'<span class="no">'+pad(i)+'</span><h4>'+t(p.n)+'</h4><p>'+t(p.tag)+'</p><div class="chips">'+list(p.g,function(g){return '<span>'+g+'</span>'})+'</div><span class="go">→</span></a>'})+'</div>'}
+function steps(){return '<ol class="steps">'+list(C.sup.steps,function(s,i){return '<li class="rv"><span class="no">'+pad(i)+'</span><h4>'+t(s.t)+'</h4><p>'+t(s.d)+'</p></li>'})+'</ol>'}
+function marquee(){var items=[];C.products.forEach(function(p){items.push(t(p.n));p.g.forEach(function(g){items.push(g)})});items.push(t(C.mills.k),'Seoul','Korea · Japan');var s=list(items,function(x){return '<span>'+x+'</span>'});return '<div class="mq" aria-hidden="true"><div class="mqi">'+s+s+'</div></div>'}
+function cta(){return '<section class="cta"><div class="ctab rv">'+grad(FIRE,.8)+embers(80)+'<div class="in"><h2>'+t(C.ct.title)+'</h2><div class="row">'+mail()+more('contact',t(C.nav[4][1]))+'</div></div></div></section>'}
+function sec(lb,body,id,cls){return '<section'+(id?' id="'+id+'"':'')+(cls?' class="'+cls+'"':'')+'><p class="lb rv">'+lb+'</p>'+body+'</section>'}
+function std(){return sec('BUSINESS',cards())+millband()+sec(L('why'),edges())+sec('PRODUCTS',prods()+more('products',L('all')))+cta()}
+function halves(){return '<a class="half inv" href="'+href('investment')+'">'+grad(ICE,.9)+'<div class="in"><span class="no">01</span><h2>'+t(C.pillars.investment.t)+'</h2><p>'+C.pillars.investment.k[lang].join(' · ')+'</p><span class="go">→</span></div></a><a class="half sup" href="'+href('supply')+'">'+grad(FIRE,.9)+embers(160)+'<div class="in"><span class="no">02</span><h2>'+t(C.pillars.supply.t)+'</h2><p>'+C.pillars.supply.k[lang].join(' · ')+'</p><span class="go">→</span></div></a>'}
+
+var HOME={
+// 1 split hero, tagline floating over the seam, embers on the hot side
+1:function(){return '<section class="split2">'+halves()+'<div class="seam"><p class="ms">'+C.mission+'</p>'+tagline()+'</div></section>'+marquee()+std()},
+// 2 molten full-bleed, tagline giant, grade marquee under it
+2:function(){return '<section class="hero full" data-tilt>'+grad(FIRE,1.2)+embers(200)+'<div class="in"><p class="ms" data-depth=".2">'+C.mission+'</p>'+tagline('giant')+sub()+'</div></section>'+marquee()+std()},
+// 3 light tiles: tagline tile, cold tile, hot tile, three symbol tiles
+3:function(){return '<section class="tiles"><div class="tile tg1 rv"><p class="ms">'+C.mission+'</p>'+tagline()+sub()+'</div><a class="tile cold rv" href="'+href('investment')+'">'+grad(ICE,.8)+'<div class="in"><span class="no">01</span><h3>'+t(C.pillars.investment.t)+'</h3><p>'+C.pillars.investment.k[lang].join(' · ')+'</p></div></a><a class="tile hot rv" href="'+href('supply')+'">'+grad(FIRE,.8)+embers(100)+'<div class="in"><span class="no">02</span><h3>'+t(C.pillars.supply.t)+'</h3><p>'+C.pillars.supply.k[lang].join(' · ')+'</p></div></a>'+list(C.products,function(p){return '<a class="tile ps rv" href="'+href('product/'+p.id)+'">'+sym(p.id)+'<h4>'+t(p.n)+'</h4></a>'})+'</section>'+millband()+sec(L('why'),edges())+cta()},
+// 4 the wordmark itself as the monument, TRA filled with moving fire
+4:function(){return '<section class="hero mon">'+embers(120)+'<div class="in">'+logo('big',true)+'<div class="row"><div><p class="ms">'+C.mission+'</p>'+tagline()+'</div>'+sub()+'</div></div></section>'+std()},
+// 5 snap panels, each a screen: tagline, cold, hot, products
+5:function(){return '<div class="snap"><section class="pn" data-tilt>'+grad(MIX,1)+'<div class="in"><p class="ms">'+C.mission+'</p>'+tagline('giant')+'</div></section><a class="pn inv" href="'+href('investment')+'">'+grad(ICE,.9)+'<div class="in"><span class="no">01</span><h2>'+t(C.pillars.investment.t)+'</h2><p>'+t(C.pillars.investment.d)+'</p><span class="go">'+t(C.more)+' →</span></div></a><a class="pn sup" href="'+href('supply')+'">'+grad(FIRE,.9)+embers(180)+'<div class="in"><span class="no">02</span><h2>'+t(C.pillars.supply.t)+'</h2><p>'+t(C.pillars.supply.d)+'</p><span class="go">'+t(C.more)+' →</span></div></a><section class="pn prd">'+grad(STEEL,.9)+'<div class="in"><span class="no">03</span><h2>'+L('all')+'</h2><div class="symrow">'+list(C.products,function(p){return '<a href="'+href('product/'+p.id)+'">'+sym(p.id)+'<span>'+t(p.n)+'</span></a>'})+'</div></div></section></div>'+millband()+cta()},
+// 6 one field, cold left and hot right, the divide follows the pointer
+6:function(){return '<section class="hero full dual" id="dual">'+grad(ICE,.9,'cold')+'<div class="hotw">'+grad(FIRE,.9)+embers(160)+'</div><div class="in"><p class="ms">'+C.mission+'</p>'+tagline('giant')+sub()+'<div class="pair"><a href="'+href('investment')+'">'+t(C.pillars.investment.t)+' →</a><a href="'+href('supply')+'">'+t(C.pillars.supply.t)+' →</a></div></div></section>'+std()},
+// 7 corporate inset box split cold/hot, symbols row under it
+7:function(){return '<section class="inset"><div class="box"><div class="bh c">'+grad(ICE,.9)+'</div><div class="bh h">'+grad(FIRE,.9)+embers(110)+'</div><div class="in"><p class="ms">'+C.mission+'</p>'+tagline()+sub()+'<div class="btns"><a class="btn" href="'+href('products')+'">'+L('all')+'</a><a class="btn ghost" href="'+href('contact')+'">'+t(C.nav[4][1])+'</a></div></div></div><div class="symrow light">'+list(C.products,function(p){return '<a href="'+href('product/'+p.id)+'" class="rv">'+sym(p.id)+'<span>'+t(p.n)+'</span></a>'})+'</div></section>'+millband()+sec('BUSINESS',cards())+sec(L('how'),steps())+cta()},
+// 8 paper editorial: tagline as masthead, symbols as illustrations
+8:function(){return '<section class="hero ed"><p class="ms">'+C.mission+'</p>'+tagline('mast')+'<div class="cols"><div class="win">'+grad(FIRE,1.3)+embers(120)+'</div><div>'+sub()+more('company')+'</div></div></section>'+sec('BUSINESS',cards())+millband()+sec('PRODUCTS','<div class="edrow">'+list(C.products,function(p,i){return '<a class="edp rv" href="'+href('product/'+p.id)+'">'+sym(p.id)+'<div><span class="no">'+pad(i)+'</span><h4>'+t(p.n)+'</h4><p>'+t(p.tag)+'</p></div></a>'})+'</div>')+cta()},
+// 9 cinematic: centred tagline rising word by word, menu behind ☰
+9:function(){return '<section class="hero full cine" data-tilt>'+grad(FIRE,1)+embers(220)+'<div class="in"><p class="ms">'+C.mission+'</p>'+tagline('giant')+'<p class="sub" data-depth=".3">'+t(C.sub)+'</p></div><span class="scroll">SCROLL</span></section><section class="manifesto"><p class="rv">'+t(C.pillars.investment.d)+'</p></section>'+sec('BUSINESS',cards())+millband()+sec('PRODUCTS',prods())+cta()},
+// 10 light and quiet: a thin ember line, symbols breathing
+10:function(){return '<div class="ember">'+grad(EMBER,.6)+'</div><section class="hero quiet"><p class="ms">'+C.mission+'</p>'+tagline()+sub()+'<div class="symrow light">'+list(C.products,function(p){return '<a href="'+href('product/'+p.id)+'" class="rv">'+sym(p.id)+'<span>'+t(p.n)+'</span></a>'})+'</div></section>'+std()}
+};
+
+// ---- inner pages ----
+function subhead(eb,title,pal,crumb,hot){return '<section class="sh">'+grad(pal,1)+(hot?embers(120):'')+'<div class="in"><p class="crumb"><a href="'+href('')+'">'+t(C.back)+'</a>'+(crumb||'')+'</p><p class="ms">'+eb+'</p><h1 data-words>'+title+'</h1></div></section>'}
+function next(p,lb){return '<section class="nx"><a href="'+href(p)+'" class="rv"><span>'+L('next')+'</span><b>'+lb+' →</b></a></section>'}
+var PAGE={
+investment:function(){var v=C.inv;return subhead(t(C.pillars.investment.t).toUpperCase(),t(v.title),ICE)+'<section class="lead2"><p class="rv">'+t(v.intro)+'</p></section><section><div class="items">'+list(v.items,function(x,i){return '<div class="item rv"><span class="no">'+pad(i)+'</span><h3>'+t(x.t)+'</h3><p>'+t(x.d)+'</p></div>'})+'</div><p class="note rv">'+t(v.rule)+'</p></section>'+next('supply',t(C.pillars.supply.t))+cta()},
+supply:function(){var v=C.sup;return subhead(t(C.pillars.supply.t).toUpperCase(),t(v.title),FIRE,'',true)+'<section class="lead2"><p class="rv">'+t(v.intro)+'</p></section>'+sec(L('how'),steps())+sec(L('why'),edges())+sec(L('docs'),'<ul class="docs">'+list(C.docs[lang],function(x){return '<li class="rv">'+x+'</li>'})+'</ul>')+next('products',L('all'))+cta()},
+products:function(){return subhead('PRODUCTS',L('all'),STEEL)+'<section>'+prods('big')+'</section>'+cta()},
+product:function(){var i=Math.max(0,C.products.findIndex(function(p){return p.id===arg})),p=C.products[i],nx=C.products[(i+1)%3];
+  return subhead('PRODUCTS',t(p.n),i===2?FIRE:STEEL,' / <a href="'+href('products')+'">'+L('all')+'</a>',i===2)+'<section class="pd"><div class="pdl rv">'+sym(p.id,'hero')+'<p class="tag">'+t(p.tag)+'</p><p class="desc">'+t(p.desc)+'</p><h4>'+L('grades')+'</h4><div class="chips big">'+list(p.g,function(g){return '<span>'+g+'</span>'})+'</div></div><div class="pdr rv"><h4>'+L('spec')+'</h4><table class="spec">'+list(p.spec,function(r){return '<tr><th>'+t(r[0])+'</th><td>'+t(r[1])+'</td></tr>'})+'</table>'+(p.grades?'<h4>'+L('grades2')+'</h4><table class="spec">'+list(p.grades,function(r){return '<tr><th>'+r[0]+'</th><td>'+t(r[1])+'</td></tr>'})+'</table>':'')+'<h4>'+L('use')+'</h4><ul class="uses">'+list(p.use[lang],function(u){return '<li>'+u+'</li>'})+'</ul><a class="btn" href="'+href('contact/'+p.id)+'">'+t(C.ct.f.send)+' →</a></div></section>'+sec(L('docs'),'<ul class="docs">'+list(C.docs[lang],function(x){return '<li class="rv">'+x+'</li>'})+'</ul>')+next('product/'+nx.id,t(nx.n))},
+company:function(){var v=C.co;return subhead('COMPANY',t(v.title),MIX)+'<section class="lead2"><p class="rv">'+t(v.intro)+'</p></section>'+millband()+'<section><div class="items">'+list(v.values,function(x,i){return '<div class="item rv"><span class="no">'+pad(i)+'</span><h3>'+t(x.t)+'</h3><p>'+t(x.d)+'</p></div>'})+'</div></section><section><table class="spec wide rv">'+list(v.rows,function(r){return '<tr><th>'+t(r[0])+'</th><td>'+t(r[1])+'</td></tr>'})+'</table></section>'+cta()},
+contact:function(){var f=C.ct.f,sel=arg||'coil';return subhead('CONTACT',t(C.ct.title),MIX)+'<section class="ctp"><div><p class="lead3 rv">'+t(C.ct.intro)+'</p><div class="addr rv"><p>'+t(C.office)+'</p>'+mail()+'</div></div><form class="form rv" id="inq"><label>'+t(f.product)+'<select name="product">'+list(C.products,function(p){return '<option value="'+t(p.n)+'"'+(p.id===sel?' selected':'')+'>'+t(p.n)+'</option>'})+'</select></label><label>'+t(f.grade)+'<input name="grade" autocomplete="off"></label><label>'+t(f.qty)+'<input name="qty" autocomplete="off"></label><label>'+t(f.port)+'<input name="port" autocomplete="off"></label><label>'+t(f.company)+'<input name="company" autocomplete="organization"></label><label class="w">'+t(f.msg)+'<textarea name="msg" rows="4"></textarea></label><button type="submit" class="btn">'+t(f.send)+' →</button></form></section>'}
+};
+
+var NAMES=Object.keys(D).map(function(k){return D[k].n});
+var app=document.getElementById('app'),root=document.documentElement,sw=document.getElementById('sw');
+function wire(){
+  app.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){var c=b.previousElementSibling;function s(){var r=document.createRange();r.selectNodeContents(c);var g=getSelection();g.removeAllRanges();g.addRange(r)}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(c.textContent).then(function(){b.textContent=lang==='ja'?'コピー済み':'Copied'},s);else s()})});
+  var ov=app.querySelector('.ov'),bg=app.querySelector('.bgr');
+  if(bg)bg.addEventListener('click',function(){var o=ov.hidden;ov.hidden=!o;bg.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':''});
+  var fm=app.querySelector('#inq');
+  if(fm)fm.addEventListener('submit',function(e){e.preventDefault();var v=new FormData(fm),f=C.ct.f,lines=['product','grade','qty','port','company'].map(function(k){return t(f[k])+': '+(v.get(k)||'')});
+    location.href='mailto:'+C.addr+'?subject='+encodeURIComponent('Inquiry — '+v.get('product'))+'&body='+encodeURIComponent(lines.join('\n')+'\n\n'+(v.get('msg')||''))});
+  // direction 6: the cold/hot divide follows the pointer
+  var dual=app.querySelector('#dual');
+  if(dual){var on=function(e){var b=dual.getBoundingClientRect();dual.style.setProperty('--x',((e.clientX-b.left)/b.width*100).toFixed(1)+'%')};dual.addEventListener('pointermove',on);wire.off=function(){dual.removeEventListener('pointermove',on)}}
+}
+function render(){if(wire.off){wire.off();wire.off=null}document.body.style.overflow='';
+  var d=D[cur];app.className='v'+cur+' th-'+d.th+(page?' inner':' home');
+  app.innerHTML=head()+menu()+'<main>'+(page&&PAGE[page]?PAGE[page]():HOME[cur]())+'</main>'+foot();
+  root.setAttribute('data-v',cur);wire();window.IVFX&&IVFX.attach(app);
+  app.classList.remove('fade');void app.offsetWidth;app.classList.add('fade')}
+function route(){if(SITE){var q=location.hash.match(/^#\/([a-z]+)?(?:\/([a-z]+))?/);cur=SITE;page=q&&q[1]||'';arg=q&&q[2]||'';if(page&&!PAGE[page])page='';render();scrollTo(0,0);return}
+  var m=location.hash.match(/^#d(10|[1-9])(?:\/([a-z]+)(?:\/([a-z]+))?)?/);
+  if(m){cur=m[1];page=m[2]||'';arg=m[3]||''}else{cur=get('iv-v')||'1';page='';arg=''}
+  put('iv-v',cur);sw.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===cur))});render();scrollTo(0,0)}
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+if(sw){sw.innerHTML=NAMES.map(function(n,i){return '<button type="button" data-v="'+(i+1)+'">'+(i+1)+' '+n+'</button>'}).join('');
+sw.addEventListener('click',function(e){var b=e.target.closest('button');if(b)location.hash='d'+b.dataset.v+(page?'/'+page+(arg?'/'+arg:''):'')})}
+document.querySelectorAll('.lg button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;root.lang=lang;document.querySelectorAll('.lg button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});put('iv-lang',lang);render()})});
+lang=get('iv-lang')==='ja'?'ja':'en';root.lang=lang;document.querySelectorAll('.lg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===lang))});
+addEventListener('hashchange',route);route();
+})();

@@ -2,6 +2,7 @@
 //  gradient — flowing noise gradient (after ruucm/shadergradient)
 //  metal    — liquid-metal fill on a text mask (after paper-design/liquid-logo)
 //  coil     — 3D stainless coil with three.js (mrdoob/three.js, loaded from jsDelivr)
+//  embers   — 2D particles drifting up from a furnace edge
 // Each effect pauses off-screen and draws a single frame under prefers-reduced-motion.
 (function(){
 var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -77,13 +78,41 @@ function coil(cv){threeP=threeP||import(THREE_URL);threeP.then(function(T){if(!c
   loop(cv,function(t){var w=cv.clientWidth,h=cv.clientHeight;if(cv.width!==Math.round(w*r.getPixelRatio())){r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
     g.rotation.y=t*.22;g.rotation.x=.95+my*.25;g.rotation.z=.3+mx*.3;r.render(sc,cam)},function(){r.dispose()})}).catch(function(){})}
 
+
+// embers: a few hundred sparks rising from the bottom edge, warm and slow
+function embers(cv){var x=cv.getContext('2d');if(!x)return;var N=parseInt(cv.dataset.n||'140',10),P=[],w=0,h=0;
+  function spawn(p,init){p.x=Math.random();p.y=init?Math.random():1.05;p.r=.6+Math.random()*2.2;p.v=(.08+Math.random()*.22)/100;p.d=(Math.random()-.5)*.0006;p.a=.3+Math.random()*.7;p.ph=Math.random()*6.28;return p}
+  for(var i=0;i<N;i++)P.push(spawn({},true));
+  loop(cv,function(t){if(size(cv)){w=cv.width;h=cv.height}x.clearRect(0,0,w,h);x.globalCompositeOperation='lighter';
+    for(var i=0;i<N;i++){var p=P[i];p.y-=p.v;p.x+=p.d+Math.sin(t*1.3+p.ph)*.0004;if(p.y<-.05||p.x<-.02||p.x>1.02)spawn(p);
+      var f=Math.sin(t*2+p.ph)*.3+.7,px=p.x*w,py=p.y*h,rr=p.r*(w/900+.6);
+      var g=x.createRadialGradient(px,py,0,px,py,rr*4);g.addColorStop(0,'rgba(255,200,120,'+(p.a*f).toFixed(2)+')');g.addColorStop(.4,'rgba(240,120,50,'+(p.a*f*.35).toFixed(2)+')');g.addColorStop(1,'rgba(240,120,50,0)');
+      x.fillStyle=g;x.beginPath();x.arc(px,py,rr*4,0,6.283);x.fill()}
+    x.globalCompositeOperation='source-over'})}
+
 window.IVFX={attach:function(root){live.splice(0).forEach(function(s){s()});
-  root.querySelectorAll('canvas[data-fx]').forEach(function(cv){({gradient:gradient,metal:metal,coil:coil}[cv.dataset.fx]||function(){})(cv)});
+  root.querySelectorAll('canvas[data-fx]').forEach(function(cv){({gradient:gradient,metal:metal,coil:coil,embers:embers}[cv.dataset.fx]||function(){})(cv)});
   // scroll reveal
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
   root.querySelectorAll('.rv').forEach(function(el){io.observe(el)});live.push(function(){io.disconnect()});
   // kinetic words: a tall section whose sticky stage swaps one word per step of scroll
   root.querySelectorAll('[data-kinetic]').forEach(function(sec){var ws=sec.querySelectorAll('.kw');
     function on(){var b=sec.getBoundingClientRect(),p=Math.min(.999,Math.max(0,-b.top/(b.height-innerHeight))),k=Math.floor(p*ws.length);ws.forEach(function(w,i){w.classList.toggle('on',i===k)})}
-    addEventListener('scroll',on,{passive:true});on();live.push(function(){removeEventListener('scroll',on)})})}};
+    addEventListener('scroll',on,{passive:true});on();live.push(function(){removeEventListener('scroll',on)})});
+  // count-up numbers: <b data-count="2016">
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,to=parseFloat(el.dataset.count),t0=performance.now(),dur=1400;
+    if(still){el.textContent=el.dataset.count;return}
+    (function f(now){var p=Math.min(1,(now-t0)/dur),k=1-Math.pow(1-p,3);el.textContent=Math.round(to*k).toLocaleString('en-US').replace(/,/g,el.dataset.sep||'');if(p<1)requestAnimationFrame(f)})(t0)})},{threshold:.4});
+  root.querySelectorAll('[data-count]').forEach(function(el){co.observe(el)});live.push(function(){co.disconnect()});
+  // pointer parallax: children with data-depth drift against the pointer inside [data-tilt]
+  root.querySelectorAll('[data-tilt]').forEach(function(box){var ks=box.querySelectorAll('[data-depth]');
+    function on(e){var b=box.getBoundingClientRect(),dx=(e.clientX-b.left)/b.width-.5,dy=(e.clientY-b.top)/b.height-.5;ks.forEach(function(k){var d=parseFloat(k.dataset.depth);k.style.transform='translate3d('+(dx*d*-40).toFixed(1)+'px,'+(dy*d*-40).toFixed(1)+'px,0)'})}
+    function off(){ks.forEach(function(k){k.style.transform=''})}
+    if(still)return;box.addEventListener('pointermove',on);box.addEventListener('pointerleave',off);live.push(function(){box.removeEventListener('pointermove',on);box.removeEventListener('pointerleave',off)})});
+  // split headline words so each can rise in turn: <h1 data-words>
+  root.querySelectorAll('[data-words]').forEach(function(h){if(h.dataset.split)return;h.dataset.split='1';
+    h.innerHTML=h.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g,function(m,tag,w){return tag?tag:'<span class="wd"><i>'+w+'</i></span>'});
+    var ws=h.querySelectorAll('.wd');ws.forEach(function(w,i){w.style.transitionDelay=(i*70)+'ms'});h.classList.add('rv');io.observe(h)});
+  // scrolled flag for the floating header
+  function sc(){document.documentElement.classList.toggle('scrolled',scrollY>40)}addEventListener('scroll',sc,{passive:true});sc();live.push(function(){removeEventListener('scroll',sc)})}};
 })();
