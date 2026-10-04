@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,300;62..125,500;62..125,700;62..125,800;62..125,900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
-<link rel="stylesheet" href="assets/symbols.css?v=aec7ee7">
+<link rel="stylesheet" href="assets/symbols.css?v=1508752">
 <style>
 /* V series: Furnace Split x Molten with the 2026-09 CI wordmark, a floating header, product symbols and more motion. Shared chrome and inner pages first, then V-specific rules. */
 :root{--sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;--disp:"Archivo","Arial Narrow",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;--gut:clamp(16px,5vw,80px)}
@@ -213,7 +213,7 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 .lock.hero .wm .f{background:linear-gradient(90deg,var(--navy) 0 50%,transparent 50% 100%);background-size:200% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.033em var(--navy);animation:fadeup .7s .15s both,fillin 1.1s .6s cubic-bezier(.2,.7,.2,1) forwards,shimmer 7s 3s ease-in-out infinite}
 /* SVG wordmark animation */
 .wmsvg{width:auto;height:1em;display:block;overflow:visible} .wmsvg text{font:800 92px/1 var(--ci);letter-spacing:.02em}
-.flo .mk .wmsvg{height:.8em} .flo .wmsvg .ol{stroke:var(--lg,var(--fg))} .flo .wmsvg .fl{fill:var(--lg,var(--fg))}
+.flo .mk .wmsvg{height:1.08em} .flo .wmsvg .ol{stroke:var(--lg,var(--fg))} .flo .wmsvg .fl{fill:var(--lg,var(--fg))}
 .wmsvg .ol{fill:none;stroke:var(--navy);stroke-width:2.6;stroke-dasharray:900;stroke-dashoffset:900;animation:drawol 2.2s .2s cubic-bezier(.4,0,.2,1) forwards}
 .wmsvg .ol .t{stroke:none}
 .wmsvg .fl{fill:var(--navy)} .wmsvg .fl .h{fill:none}
@@ -229,6 +229,7 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 @keyframes fillin{to{background-position:0 0}}
 @keyframes shimmer{0%,86%,100%{filter:brightness(1)}92%{filter:brightness(1.6)}}
 @media (prefers-reduced-motion:reduce){.lock.hero *{animation:none!important}.lock.hero .wm .f{background-position:0 0}}
+.h-captcha{grid-column:1/-1;min-height:78px}
 .fnote{grid-column:1/-1;margin:0;font-size:14px;color:var(--dim)} .fnote.ok{color:#1B6B3A} .fnote.err{color:#B23A1E}
 @media (max-width:900px){.qrow{grid-template-columns:1fr}.qrow .wm.hero{font-size:clamp(40px,11vw,72px)}}
 /* material supply card in white */
@@ -256,12 +257,13 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 
 <div class="lg" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="ja" aria-pressed="false">日本語</button></div>
 <div id="app"></div>
-<script src="assets/symbols.js?v=aec7ee7"></script>
-<script>window.IV_SITE=10</script>
-<script src="assets/fx.js?v=aec7ee7"></script>
-<script src="assets/y-content.js?v=aec7ee7"></script>
-<script src="assets/v-content.js?v=aec7ee7"></script>
-<script src="assets/concepts-v.js?v=aec7ee7"></script>
+<script src="assets/symbols.js?v=1508752"></script>
+<script>window.IV_SITE=10;window.IV_W3F_KEY=""</script>
+<script src="assets/fx.js?v=1508752"></script>
+<script src="assets/y-content.js?v=1508752"></script>
+<script src="assets/v-content.js?v=1508752"></script>
+<script src="assets/concepts-v.js?v=1508752"></script>
+<script src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
 
 </body>
 </html>
