@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,300;62..125,500;62..125,700;62..125,800;62..125,900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
-<link rel="stylesheet" href="assets/symbols.css">
+<link rel="stylesheet" href="assets/symbols.css?v=aec7ee7">
 <style>
 /* V series: Furnace Split x Molten with the 2026-09 CI wordmark, a floating header, product symbols and more motion. Shared chrome and inner pages first, then V-specific rules. */
 :root{--sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;--disp:"Archivo","Arial Narrow",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;--gut:clamp(16px,5vw,80px)}
@@ -127,7 +127,7 @@ table{color:inherit;font:inherit}
 .lock{display:flex;align-items:center;gap:16px} .lock .rule{width:2px;height:40px;background:currentColor;opacity:.9} .tg2{display:flex;flex-direction:column;gap:2px;font:600 13px/1.3 var(--ci);color:inherit} .tg2 span{font-weight:400;opacity:.65;font-size:12px}
 /* floating header */
 .flo{position:fixed;z-index:30;top:14px;left:50%;transform:translateX(-50%);width:min(1320px,calc(100% - 24px));display:flex;align-items:center;gap:28px;padding:12px 22px;border-radius:999px;color:var(--fg);transition:padding .4s,background .4s,box-shadow .4s,top .4s}
-.flo .mk{display:flex;align-items:center;font-size:32px;transition:font-size .4s} .flo nav{margin-left:auto;display:flex;gap:24px;font:500 13.5px var(--sans);padding-right:116px} .flo nav a{opacity:.85} .flo nav a:hover,.flo nav a[aria-current]{opacity:1;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:1px}
+.flo .mk{display:flex;align-items:center;font-size:34px;transition:font-size .4s} .flo nav{margin-left:auto;display:flex;gap:24px;font:500 13.5px var(--sans);padding-right:116px} .flo nav a{opacity:.85} .flo nav a:hover,.flo nav a[aria-current]{opacity:1;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:1px}
 .home .th-dark .flo,.v1.home .flo,.v2.home .flo,.v4.home .flo,.v5.home .flo,.v6.home .flo,.v9.home .flo,.v3.home .flo .tile{color:#fff}
 .v1.home .flo,.v2.home .flo,.v4.home .flo,.v5.home .flo,.v6.home .flo,.v9.home .flo,.inner .sh~.flo{--lg:#fff;color:#fff}
 .scrolled .flo{top:10px;padding:8px 18px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 40px rgba(0,0,0,.18),inset 0 0 0 1px color-mix(in srgb,var(--fg) 10%,transparent);color:var(--fg);--lg:var(--fg)}
@@ -206,13 +206,14 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 .th-dark .flo{--lg:#fff} .th-light .flo,.th-paper .flo{--lg:var(--navy)} .th-light,.th-paper{--lg:var(--navy)} .v3.home .flo,.v7.home .flo,.v8.home .flo,.v10.home .flo{--lg:var(--navy);color:var(--fg)}
 .th-dark .mq{color:#A39A90}
 /* V10 hero: tagline and wordmark side by side */
-.qrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center} .qrow .wm.hero{font-size:clamp(28px,4vw,66px);--lg:var(--navy)}
+.qrow{display:block} .qrow .wm.hero{font-size:clamp(28px,4vw,66px);--lg:var(--navy)}
 .qrow{align-items:center;justify-items:center} .qrow>div:first-child{justify-self:start}
 .lock.hero{flex-direction:column;align-items:center;gap:14px;text-align:center;justify-self:center;width:min(100%,520px)} .lock.hero .tg2{align-items:center} .lock.hero .rule{width:60px;height:2px;transform-origin:center;animation:ruleg 1s .9s cubic-bezier(.2,.7,.2,1) both} .lock.hero .tg2{color:var(--navy);animation:fadeup .8s 1.2s both}
 .lock.hero .wm b{display:inline-block;animation:fadeup .7s cubic-bezier(.2,.7,.2,1) both} .lock.hero .wm b:nth-child(2){animation-delay:.15s} .lock.hero .wm b:nth-child(3){animation-delay:.3s}
 .lock.hero .wm .f{background:linear-gradient(90deg,var(--navy) 0 50%,transparent 50% 100%);background-size:200% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.033em var(--navy);animation:fadeup .7s .15s both,fillin 1.1s .6s cubic-bezier(.2,.7,.2,1) forwards,shimmer 7s 3s ease-in-out infinite}
 /* SVG wordmark animation */
-.wmsvg{width:100%;height:auto;display:block;overflow:visible;font:800 92px/1 var(--ci);letter-spacing:.02em;animation:floaty 7s ease-in-out infinite}
+.wmsvg{width:auto;height:1em;display:block;overflow:visible} .wmsvg text{font:800 92px/1 var(--ci);letter-spacing:.02em}
+.flo .mk .wmsvg{height:.8em} .flo .wmsvg .ol{stroke:var(--lg,var(--fg))} .flo .wmsvg .fl{fill:var(--lg,var(--fg))}
 .wmsvg .ol{fill:none;stroke:var(--navy);stroke-width:2.6;stroke-dasharray:900;stroke-dashoffset:900;animation:drawol 2.2s .2s cubic-bezier(.4,0,.2,1) forwards}
 .wmsvg .ol .t{stroke:none}
 .wmsvg .fl{fill:var(--navy)} .wmsvg .fl .h{fill:none}
@@ -255,12 +256,12 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 
 <div class="lg" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="ja" aria-pressed="false">日本語</button></div>
 <div id="app"></div>
-<script src="assets/symbols.js"></script>
+<script src="assets/symbols.js?v=aec7ee7"></script>
 <script>window.IV_SITE=10</script>
-<script src="assets/fx.js"></script>
-<script src="assets/y-content.js"></script>
-<script src="assets/v-content.js"></script>
-<script src="assets/concepts-v.js"></script>
+<script src="assets/fx.js?v=aec7ee7"></script>
+<script src="assets/y-content.js?v=aec7ee7"></script>
+<script src="assets/v-content.js?v=aec7ee7"></script>
+<script src="assets/concepts-v.js?v=aec7ee7"></script>
 
 </body>
 </html>
