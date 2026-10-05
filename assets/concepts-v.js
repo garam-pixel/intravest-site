@@ -70,15 +70,23 @@ var HOME={
 };
 
 // ---- inner pages ----
+// photos (2026-10-05): several per slot → swipeable gallery with 5s autoplay
+var PH={supply:[['p2-1','Stockpile of granulated slag under a blue sky'],['p2-2','Slag stockyard with conveyor equipment'],['p2-3','Coated steel coils on a trailer in a container yard']],
+  coil:[['p4-1','Close-up of a metallic coated steel coil'],['p4-2','Stainless steel coil on a trailer, front view'],['p4-3','Two stainless steel coils on a warehouse floor']],
+  pipe:[['p5-5','Container fully stuffed with bundled steel tubes'],['p5-1','Bundles of steel tubes stacked in a container'],['p5-4','Bundled steel tubes loaded on a truck'],['p5-7','Forklift moving bundled steel tubes'],['p5-8','Tube bundles in the yard beside a container being stuffed']],
+  slag:[['p6-1','Granulated slag being loaded into a ship\'s hold'],['p6-3','Grab discharging slag inside a ship\'s hold'],['p6-4','Stockpile of granulated slag']]};
+function gal(k,cls,sizes){var a=PH[k];if(!a)return '';var n=a.length;
+  return '<div class="gal '+cls+' rv" role="region" aria-roledescription="carousel" aria-label="Photos"><div class="gtr" tabindex="0">'+list(a,function(x,i){return '<figure class="gsl" aria-roledescription="slide" aria-label="'+(i+1)+' of '+n+'"><img src="assets/img/'+x[0]+'-1200.webp" srcset="assets/img/'+x[0]+'-1200.webp 1200w, assets/img/'+x[0]+'-2400.webp 2400w" sizes="'+sizes+'" alt="'+x[1]+'" loading="'+(i?'lazy':'eager')+'" decoding="async"></figure>'})+'</div>'+
+    (n>1?'<button type="button" class="gp gpv" aria-label="Previous photo"><span aria-hidden="true">←</span></button><button type="button" class="gp gnx" aria-label="Next photo"><span aria-hidden="true">→</span></button><div class="gdots">'+list(a,function(x,i){return '<button type="button" aria-label="Photo '+(i+1)+'"'+(i?'':' aria-current="true"')+'></button>'})+'</div>':'')+'</div>'}
 function subhead(eb,title,pal,crumb,hot){return '<section class="sh'+(pal===GRAY?' light':'')+'">'+grad(pal,1)+(hot?embers(120):'')+'<div class="in"><p class="crumb"><a href="'+href('')+'">'+t(C.back)+'</a>'+(crumb||'')+'</p><p class="ms">'+eb+'</p><h1 data-words>'+title+'</h1></div></section>'}
 function next(p,lb){return '<section class="nx"><a href="'+href(p)+'" class="rv"><span>'+L('next')+'</span><b>'+lb+' →</b></a></section>'}
 var PAGE={
 investment:function(){var v=C.inv;return subhead(t(C.pillars.investment.t).toUpperCase(),t(v.title),ICE)+'<section class="lead2"><p class="rv">'+t(v.intro)+'</p></section><section><div class="items">'+list(v.items,function(x,i){return '<div class="item rv"><span class="no">'+pad(i)+'</span><h3>'+t(x.t)+'</h3><p>'+t(x.d)+'</p></div>'})+'</div><p class="note rv">'+t(v.rule)+'</p></section>'+next('supply',t(C.pillars.supply.t))+cta()},
-supply:function(){var v=C.sup;return subhead(t(C.pillars.supply.t).toUpperCase(),t(v.title),GRAY)+'<section class="lead2"><p class="rv">'+t(v.intro)+'</p></section>'+sec(t(v.ops.k),items3(v.ops))+sec(t(v.insight.k),items3(v.insight))+sec(t(v.logi.k),items3(v.logi))+sec(t(v.fta.k),'<p class="lead3 rv">'+t(v.fta.d)+'</p><table class="spec wide rv">'+list(v.fta.groups,function(g){return '<tr><th>'+t(g.k)+'</th><td>'+g.v+'</td></tr>'})+'</table>')+sec(L('why'),edges())+next('products',L('all'))+cta()},
+supply:function(){var v=C.sup;return subhead(t(C.pillars.supply.t).toUpperCase(),t(v.title),GRAY)+'<section class="phw">'+gal('supply','r219','(min-width: 1880px) 1800px, calc(100vw - 2 * clamp(16px, 5vw, 80px))')+'</section><section class="lead2 after-ph"><p class="rv">'+t(v.intro)+'</p></section>'+sec(t(v.ops.k),items3(v.ops))+sec(t(v.insight.k),items3(v.insight))+sec(t(v.logi.k),items3(v.logi))+sec(t(v.fta.k),'<p class="lead3 rv">'+t(v.fta.d)+'</p><table class="spec wide rv">'+list(v.fta.groups,function(g){return '<tr><th>'+t(g.k)+'</th><td>'+g.v+'</td></tr>'})+'</table>')+sec(L('why'),edges())+next('products',L('all'))+cta()},
 products:function(){return subhead('PRODUCTS',L('all'),STEEL)+'<section>'+prods('big')+'</section>'+cta()},
 product:function(){var i=Math.max(0,C.products.findIndex(function(p){return p.id===arg})),p=C.products[i],sh=p.id==='slag'?null:C.shared;
   var tabs='<nav class="ptabs rv">'+list(C.products,function(q){return '<a href="'+href('product/'+q.id)+'"'+(q.id===p.id?' aria-current="page"':'')+'>'+t(q.n)+'</a>'})+'</nav>';
-  var top='<section class="pd"><div class="pdl rv">'+sym(p.id,'hero')+'<p class="tag">'+t(p.tag)+'</p><p class="desc">'+t(p.desc)+'</p></div><div class="pdr rv"><h4>'+L('spec')+'</h4><table class="spec">'+list(p.spec,function(r){return '<tr><th>'+t(r[0])+'</th><td>'+t(r[1])+'</td></tr>'})+'</table><a class="btn" href="'+href('contact/'+p.id)+'">'+t(C.ct.f.send)+' →</a></div></section>';
+  var top='<section class="pd"><div class="pdl rv">'+sym(p.id,'hero')+'<p class="tag">'+t(p.tag)+'</p><p class="desc">'+t(p.desc)+'</p></div><div class="pdr rv">'+gal(p.id,'r43','(min-width: 900px) 56vw, 100vw')+'<h4>'+L('spec')+'</h4><table class="spec">'+list(p.spec,function(r){return '<tr><th>'+t(r[0])+'</th><td>'+t(r[1])+'</td></tr>'})+'</table><a class="btn" href="'+href('contact/'+p.id)+'">'+t(C.ct.f.send)+' →</a></div></section>';
   var g=sh?sh.g:p.g,gd=sh?sh.grades:p.grades,use=sh?sh.use[lang]:p.use[lang];
   var fixed='<section class="pd fixed"><div class="pdl rv"><h4>'+L('grades')+'</h4><div class="chips big">'+list(g,function(x){return '<span>'+x+'</span>'})+'</div><h4>'+L('use')+'</h4><ul class="uses">'+list(use,function(u){return '<li>'+u+'</li>'})+'</ul></div><div class="pdr rv"><h4>'+(p.id==='slag'?L('why'):L('grades2'))+'</h4><table class="spec">'+list(gd,function(r){return '<tr><th>'+t(r[0])+'</th><td>'+t(r[1])+'</td></tr>'})+'</table></div></section>';
   return subhead('PRODUCTS',t(p.n),STEEL,' / <a href="'+href('products')+'">'+L('all')+'</a>')+'<section class="ptabw">'+tabs+'</section>'+top+fixed},
@@ -107,6 +115,27 @@ function wire(){
     var sub=fm.querySelector('[name=subject],[name=_subject]');if(sub)sub.value='Website inquiry — '+fd.get('product')+' — '+fd.get('company');
     if(!fm.querySelector('[name=access_key]')){var rt=document.createElement('input');rt.type='hidden';rt.name='_replyto';rt.value=fd.get('email');fm.appendChild(rt)}
     put('iv-sent',String(Date.now()));fm.querySelector('button').disabled=true})}
+  // photo galleries: native swipe (scroll-snap), arrows and dots; no autoplay
+  app.querySelectorAll('.gal').forEach(function(g){var tr=g.querySelector('.gtr'),ds=g.querySelectorAll('.gdots button'),n=tr.children.length,
+    still=matchMedia('(prefers-reduced-motion: reduce)').matches;if(n<2)return;
+    function idx(){return Math.round(tr.scrollLeft/tr.clientWidth)}
+    function go(i){i=(i+n)%n;tr.scrollTo({left:i*tr.clientWidth,behavior:still?'auto':'smooth'})}
+    function mark(){var i=idx();ds.forEach(function(d,j){if(j===i)d.setAttribute('aria-current','true');else d.removeAttribute('aria-current')})}
+    g.querySelector('.gpv').addEventListener('click',function(){go(idx()-1)});g.querySelector('.gnx').addEventListener('click',function(){go(idx()+1)});
+    ds.forEach(function(d,j){d.addEventListener('click',function(){go(j)})});
+    tr.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1)}else if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1)}});
+    var tm;tr.addEventListener('scroll',function(){clearTimeout(tm);tm=setTimeout(mark,60)},{passive:true});
+    // autoplay (2026-10-05): ~5s, pauses on hover/touch/focus, off-screen or hidden tab; off under reduced motion
+    if(still)return;var hold=0,vis=false,tk=null;
+    function run(){clearInterval(tk);tk=null;if(!hold&&vis&&!document.hidden)tk=setInterval(function(){go(idx()+1)},5000)}
+    function pause(){hold++;run()}function resume(){hold=Math.max(0,hold-1);run()}
+    g.addEventListener('mouseenter',pause);g.addEventListener('mouseleave',resume);
+    g.addEventListener('focusin',function(e){if(!g._f&&e.target.matches(':focus-visible')){g._f=1;pause()}});g.addEventListener('focusout',function(e){if(g._f&&!g.contains(e.relatedTarget)){g._f=0;resume()}});
+    var tt;g.addEventListener('touchstart',function(){clearTimeout(tt);if(!g._t){g._t=1;pause()}},{passive:true});
+    g.addEventListener('touchend',function(){clearTimeout(tt);tt=setTimeout(function(){if(g._t){g._t=0;resume()}},4000)},{passive:true});
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;run()},{threshold:.4}).observe(g);else{vis=true;run()}
+    var onVis=function(){run()};document.addEventListener('visibilitychange',onVis);
+    var off0=wire.off;wire.off=function(){clearInterval(tk);document.removeEventListener('visibilitychange',onVis);if(off0)off0()}});
   // direction 6: the cold/hot divide follows the pointer
   var dual=app.querySelector('#dual');
   if(dual){var on=function(e){var b=dual.getBoundingClientRect();dual.style.setProperty('--x',((e.clientX-b.left)/b.width*100).toFixed(1)+'%')};dual.addEventListener('pointermove',on);wire.off=function(){dual.removeEventListener('pointermove',on)}}

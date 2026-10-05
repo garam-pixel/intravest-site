@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Public+Sans:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,300;62..125,500;62..125,700;62..125,800;62..125,900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
-<link rel="stylesheet" href="assets/symbols.css?v=e3a809e">
+<link rel="stylesheet" href="assets/symbols.css?v=82135d5">
 <style>
 /* V series: Furnace Split x Molten with the 2026-09 CI wordmark, a floating header, product symbols and more motion. Shared chrome and inner pages first, then V-specific rules. */
 :root{--sans:"IBM Plex Sans","IBM Plex Sans JP","Hiragino Sans",system-ui,sans-serif;--disp:"Archivo","Arial Narrow",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;--gut:clamp(16px,5vw,80px)}
@@ -255,18 +255,37 @@ h1.tg,.hero h1.tg{font:800 clamp(40px,7vw,116px)/.98 var(--ci);letter-spacing:-.
 .ptabw{padding-bottom:0} .ptabs{display:flex;flex-wrap:wrap;gap:8px} .ptabs a{font:600 14px var(--sans);border:1px solid var(--line);border-radius:999px;padding:10px 20px;color:var(--dim)} .ptabs a[aria-current]{background:var(--navy);border-color:var(--navy);color:#fff}
 .pd.fixed{border-top:1px solid var(--line)}
 @media (min-width:1100px){.items.n4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* photo galleries (2026-10-05): swipe / arrows / dots, 5s autoplay */
+.phw{padding-bottom:0} .lead2.after-ph{padding-top:clamp(40px,5vw,72px)}
+.gal{position:relative;max-width:1800px;margin:0 auto;border-radius:6px;overflow:hidden;background:var(--soft)}
+.gtr{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.gtr::-webkit-scrollbar{display:none} .gtr:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}
+.gsl{flex:0 0 100%;margin:0;scroll-snap-align:start;position:relative}
+.gsl img{display:block;width:100%;height:100%;object-fit:cover}
+.gal.r219 .gsl{aspect-ratio:21/9} .gal.r43 .gsl{aspect-ratio:4/3}
+.gal::before{content:"";position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(to top,rgba(6,16,28,.32),rgba(6,16,28,0));pointer-events:none;z-index:1}
+.gal::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--navy) 0%,#E07A45 62%,rgba(224,122,69,0));pointer-events:none;z-index:2}
+.gal.r219{box-shadow:0 0 0 1px var(--line)} .gal.r219::before{background:linear-gradient(to top,rgba(6,16,28,.22),rgba(6,16,28,0))}
+.gp{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(6,16,28,.55);color:#fff;font:500 18px var(--sans);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s}
+.gp:hover{background:rgba(224,122,69,.9)} .gpv{left:14px} .gnx{right:14px}
+.gdots{position:absolute;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:8px;z-index:3}
+.gdots button{width:8px;height:8px;padding:0;border-radius:999px;border:0;background:rgba(255,255,255,.7);box-shadow:0 0 0 1px rgba(6,16,28,.18);cursor:pointer;transition:width .3s,background .3s}
+.gdots button[aria-current]{width:24px;background:#E07A45}
+.pdr .gal{margin:0 0 clamp(28px,3vw,44px)}
+@media (max-width:640px){.gp{width:36px;height:36px;font-size:15px}.gpv{left:8px}.gnx{right:8px}.gal.r219 .gsl{aspect-ratio:16/9}}
+@media (prefers-reduced-motion:reduce){.gdots button,.gp{transition:none}}
 </style>
 </head>
 <body>
 
 
 <div id="app"></div>
-<script src="assets/symbols.js?v=e3a809e"></script>
+<script src="assets/symbols.js?v=82135d5"></script>
 <script>window.IV_SITE=10;window.IV_LANG="en";window.IV_W3F_KEY=""</script>
-<script src="assets/fx.js?v=e3a809e"></script>
-<script src="assets/y-content.js?v=e3a809e"></script>
-<script src="assets/v-content.js?v=e3a809e"></script>
-<script src="assets/concepts-v.js?v=e3a809e"></script>
+<script src="assets/fx.js?v=82135d5"></script>
+<script src="assets/y-content.js?v=82135d5"></script>
+<script src="assets/v-content.js?v=82135d5"></script>
+<script src="assets/concepts-v.js?v=82135d5"></script>
 <script src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
 
 </body>
