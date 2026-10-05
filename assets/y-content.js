@@ -74,7 +74,7 @@ window.IVC={
     intro:{en:'Tell us the material, size, quantity and destination. The form below opens your own mail app with the details filled in.',ja:'材料・サイズ・数量・仕向地をお知らせください。下のフォームから、内容入りのメールがお使いのメールアプリで開きます。'},
     f:{product:{en:'Product',ja:'製品'},grade:{en:'Grade / size',ja:'鋼種・サイズ'},qty:{en:'Quantity',ja:'数量'},port:{en:'Destination port',ja:'仕向港'},company:{en:'Company',ja:'会社名'},msg:{en:'Message',ja:'メッセージ'},send:{en:'Write email',ja:'メールを作成'}}
   },
-  addr:'garam@intravest.co.kr',
+  addr:'service@intravest.co.kr',
   office:{en:'Kyobo Life Building 15F, 1 Jong-ro, Jongno-gu, Seoul 03154',ja:'〒03154 ソウル特別市鍾路区鍾路1 教保生命ビル15階'},
   legal:{en:'Intravest Co., Ltd. · Investments are made with own capital only.',ja:'株式会社イントラベスト・投資は自己資本のみで行っています。'},
   L:{grades:{en:'Grades',ja:'鋼種'},spec:{en:'Specification',ja:'仕様'},use:{en:'Applications',ja:'用途'},docs:{en:'Documents with every shipment',ja:'船積ごとの書類'},how:{en:'How we work',ja:'業務の流れ'},why:{en:'Why Intravest',ja:'選ばれる理由'},copy:{en:'Copy',ja:'コピー'},all:{en:'All products',ja:'製品一覧'},next:{en:'Next',ja:'次へ'}}
